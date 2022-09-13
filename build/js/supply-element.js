@@ -3,7 +3,7 @@ import { createSupplyAmount } from "./supply.js";
 const card = document.querySelector("#card").content.querySelector(".popup");
 
 export const supplyFragmet = document.createDocumentFragment();
-const supply = createSupplyAmount(10);
+export const supply = createSupplyAmount(10);
 
 supply.forEach((elem) => {
   const supplyElement = card.cloneNode(true);
@@ -17,7 +17,7 @@ supply.forEach((elem) => {
   supplyElement.querySelector(".popup__type").textContent = elem.offer.type;
   supplyElement.querySelector(
     ".popup__text--capacity"
-  ).textContent = `${elem.offer.rooms} комнаты/комнат для ${elem.offer.guests} гостя/гостей`;
+  ).textContent = `${elem.offer.rooms} комн. для ${elem.offer.guests} чел.`;
   supplyElement.querySelector(
     ".popup__text--time"
   ).textContent = `Заезд после ${elem.offer.checkin}, выезд до ${elem.offer.checkout}`;

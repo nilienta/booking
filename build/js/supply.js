@@ -9,17 +9,23 @@ import { arrFeatures } from "./data.js";
 import { descriptions } from "./data.js";
 import { arrPhotos } from "./data.js";
 
+let coordinates = {
+  x: getRandomElementRange(54.677, 54.708, 5),
+  y: getRandomElementRange(20.504, 20.507, 5),
+};
+
 export const createSupplyAmount = (amount) => {
   const availableHousing = [];
   for (let i = 1; i <= amount; i += 1) {
+    coordinates = {
+      x: getRandomElementRange(54.645, 54.745, 5),
+      y: getRandomElementRange(20.42, 20.62, 5),
+    };
     availableHousing.push(createSupply());
   }
   return availableHousing;
 };
-const coordinates = {
-  x: getRandomElementRange(35.65, 35.7, 5),
-  y: getRandomElementRange(139.7, 139.8, 5),
-};
+
 const createSupply = () => {
   return {
     author: {

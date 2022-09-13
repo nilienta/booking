@@ -27,6 +27,7 @@
     "npm": "6.x"
   },
   "dependencies": {
+    "leaflet": "^1.8.0",
     "lodash": "^4.17.21"
   }
 }

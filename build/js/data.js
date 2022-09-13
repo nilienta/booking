@@ -24,10 +24,10 @@ export const descriptions = [
 ];
 
 export const arrPhotos = [
-  "https://github.com/moonrtv/keksobooking/blob/master/img/hotel-1.jpg",
-  "https://github.com/moonrtv/keksobooking/blob/master/img/hotel-2.jpg",
-  "https://github.com/moonrtv/keksobooking/blob/master/img/hotel-3.jpg",
-  "https://github.com/moonrtv/keksobooking/blob/master/img/hotel-4.jpg",
-  "https://github.com/moonrtv/keksobooking/blob/master/img/hotel-5.jpg",
-  "https://github.com/moonrtv/keksobooking/blob/master/img/hotel-6.jpg",
+  "../img/hotel-1.jpg",
+  "../img/hotel-2.jpg",
+  "../img/hotel-3.jpg",
+  "../img/hotel-4.jpg",
+  "../img/hotel-5.jpg",
+  "../img/hotel-6.jpg",
 ];
