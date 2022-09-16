@@ -29,7 +29,7 @@ supply.forEach((item) => {
       icon: pinMarkerIcon,
     }
   );
-  pinMarker.addTo(map);
+  pinMarker.addTo(map).bindPopup(title);
 });
 
 const mainPinIcon = L.icon({
@@ -53,4 +53,4 @@ mainPinMarker.on("moveend", (e) => {
   console.log(e.target.getLatLng());
 });
 
-mainPinMarker.addTo(map);
+mainPinMarker.addTo(map).bindPopup(title);
