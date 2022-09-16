@@ -1,4 +1,4 @@
-import { supply } from "./supply-element.js";
+import { supplePopup, supply } from "./supply-element.js";
 
 const map = L.map("map-canvas").setView(
   {
@@ -29,7 +29,9 @@ supply.forEach((item) => {
       icon: pinMarkerIcon,
     }
   );
-  pinMarker.addTo(map).bindPopup(title);
+  pinMarker.addTo(map).bindPopup(supplePopup(item), {
+    keepInView: true,
+  });
 });
 
 const mainPinIcon = L.icon({
@@ -49,8 +51,9 @@ const mainPinMarker = L.marker(
   }
 );
 
+const addressCurent = document.querySelector("#address");
 mainPinMarker.on("moveend", (e) => {
-  console.log(e.target.getLatLng());
+  addressCurent.value = e.target.getLatLng().toString();
 });
 
-mainPinMarker.addTo(map).bindPopup(title);
+mainPinMarker.addTo(map);

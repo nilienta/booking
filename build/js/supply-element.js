@@ -1,11 +1,9 @@
 import createSupplyAmount from "./supply.js";
 
 const card = document.querySelector("#card").content.querySelector(".popup");
-
-const supplyFragmet = document.createDocumentFragment();
 const supply = createSupplyAmount(10);
 
-supply.forEach((elem) => {
+const supplePopup = (elem) => {
   const supplyElement = card.cloneNode(true);
   supplyElement.querySelector(".popup__title").textContent = elem.offer.title;
   supplyElement.querySelector(
@@ -53,7 +51,7 @@ supply.forEach((elem) => {
 
   supplyElement.querySelector(".popup__avatar").src = elem.author.avatar;
 
-  supplyFragmet.appendChild(supplyElement);
-});
+  return supplyElement;
+};
 
-export { supplyFragmet, supply };
+export { supplePopup, supply };
