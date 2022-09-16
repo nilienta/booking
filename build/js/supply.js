@@ -2,7 +2,7 @@ import { getRandomElementRange } from "./utils.js";
 import { getRandomElemArr } from "./utils.js";
 import { getArrRandomLength } from "./utils.js";
 
-import { getSrcAvatar } from "./avatar.js";
+import getSrcAvatar from "./avatar.js";
 
 import { titles } from "./data.js";
 import { arrFeatures } from "./data.js";
@@ -14,7 +14,7 @@ let coordinates = {
   y: getRandomElementRange(20.504, 20.507, 5),
 };
 
-export const createSupplyAmount = (amount) => {
+const createSupplyAmount = (amount) => {
   const availableHousing = [];
   for (let i = 1; i <= amount; i += 1) {
     coordinates = {
@@ -50,3 +50,5 @@ const createOffer = () => {
     photos: getArrRandomLength(arrPhotos),
   };
 };
+
+export default createSupplyAmount;

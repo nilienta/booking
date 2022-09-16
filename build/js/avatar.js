@@ -5,7 +5,7 @@ for (let i = 1; i <= 8; i += 1) {
   createArrAvatar[i] = "0" + i;
 }
 
-export const getSrcAvatar = () => {
+const getSrcAvatar = () => {
   const numberUserIndex = getRandomElementRange(
     0,
     createArrAvatar.length - 1,
@@ -17,3 +17,5 @@ export const getSrcAvatar = () => {
   }
   return `img/avatars/user${numberUser}.png`;
 };
+
+export default getSrcAvatar;
