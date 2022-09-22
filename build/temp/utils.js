@@ -1,4 +1,4 @@
-import { random } from "./random.js";
+import { random } from "../js/random.js";
 
 const getRandomElementRange = (lower = 0, upper, floating) => {
   let float = false;

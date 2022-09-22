@@ -1,11 +1,12 @@
-import { supplePopup, supply } from "./supply-element.js";
+import supplePopup from "./supply-element.js";
+import getDataSupply from "../js/api.js";
 
 const map = L.map("map-canvas").setView(
   {
-    lat: 54.710162,
-    lng: 20.510137,
+    lat: 35.67,
+    lng: 139.76,
   },
-  11
+  13
 );
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -19,19 +20,25 @@ const pinMarkerIcon = L.icon({
   iconAnchor: [26, 52],
 });
 
-supply.forEach((item) => {
-  const pinMarker = L.marker(
-    {
-      lat: item.location.x,
-      lng: item.location.y,
-    },
-    {
-      icon: pinMarkerIcon,
-    }
-  );
-  pinMarker.addTo(map).bindPopup(supplePopup(item), {
-    keepInView: true,
+const createMarker = (dataArr) => {
+  dataArr.forEach((item) => {
+    const pinMarker = L.marker(
+      {
+        lat: item.location.lat,
+        lng: item.location.lng,
+      },
+      {
+        icon: pinMarkerIcon,
+      }
+    );
+    pinMarker.addTo(map).bindPopup(supplePopup(item), {
+      keepInView: true,
+    });
   });
+};
+
+getDataSupply().then((dataBase) => {
+  createMarker(dataBase);
 });
 
 const mainPinIcon = L.icon({
@@ -42,8 +49,8 @@ const mainPinIcon = L.icon({
 
 const mainPinMarker = L.marker(
   {
-    lat: 54.70624,
-    lng: 20.51047,
+    lat: 35.67,
+    lng: 139.76,
   },
   {
     draggable: true,
@@ -53,7 +60,12 @@ const mainPinMarker = L.marker(
 
 const addressCurent = document.querySelector("#address");
 mainPinMarker.on("moveend", (e) => {
-  addressCurent.value = e.target.getLatLng().toString();
+  addressCurent.value = e.target
+    .getLatLng()
+    .toString()
+    .replace(/[a-zA-Z()]/g, "");
 });
 
 mainPinMarker.addTo(map);
+
+export { map, createMarker };

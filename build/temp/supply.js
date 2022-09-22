@@ -4,26 +4,14 @@ import { getArrRandomLength } from "./utils.js";
 
 import getSrcAvatar from "./avatar.js";
 
-import { titles } from "./data.js";
-import { arrFeatures } from "./data.js";
-import { descriptions } from "./data.js";
-import { arrPhotos } from "./data.js";
+import { titles } from "../js/data.js";
+import { arrFeatures } from "../js/data.js";
+import { descriptions } from "../js/data.js";
+import { arrPhotos } from "../js/data.js";
 
 let coordinates = {
-  x: getRandomElementRange(54.677, 54.708, 5),
-  y: getRandomElementRange(20.504, 20.507, 5),
-};
-
-const createSupplyAmount = (amount) => {
-  const availableHousing = [];
-  for (let i = 1; i <= amount; i += 1) {
-    coordinates = {
-      x: getRandomElementRange(54.645, 54.745, 5),
-      y: getRandomElementRange(20.42, 20.62, 5),
-    };
-    availableHousing.push(createSupply());
-  }
-  return availableHousing;
+  lat: getRandomElementRange(54.677, 54.708, 5),
+  lng: getRandomElementRange(20.504, 20.507, 5),
 };
 
 const createSupply = () => {

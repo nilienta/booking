@@ -1,14 +1,10 @@
-import createSupplyAmount from "./supply.js";
-
 const card = document.querySelector("#card").content.querySelector(".popup");
-const supply = createSupplyAmount(10);
 
 const supplePopup = (elem) => {
   const supplyElement = card.cloneNode(true);
   supplyElement.querySelector(".popup__title").textContent = elem.offer.title;
-  supplyElement.querySelector(
-    ".popup__text--address"
-  ).textContent = `${elem.offer.address.x} ${elem.offer.address.y}`;
+  supplyElement.querySelector(".popup__text--address").textContent =
+    elem.offer.address;
   supplyElement.querySelector(
     ".popup__text--price"
   ).textContent = `${elem.offer.price} р/ночь`;
@@ -27,31 +23,31 @@ const supplePopup = (elem) => {
     return featureItem;
   };
 
-  const createElementFeatures = (features) => {
+  if (elem.offer.features !== undefined) {
     const featuresList = supplyElement.querySelector(".popup__features");
     featuresList.innerHTML = "";
-    features.forEach((item) => {
+    elem.offer.features.forEach((item) => {
       featuresList.appendChild(createElementFeature(item));
     });
-    return featuresList;
-  };
+  }
 
-  createElementFeatures(elem.offer.features);
   supplyElement.querySelector(".popup__description").textContent =
     elem.offer.description;
 
   const getImgTeg = supplyElement.querySelector(".popup__photo");
   supplyElement.querySelector(".popup__photos").textContent = "";
 
-  elem.offer.photos.forEach((linkPhoto) => {
-    const newImg = getImgTeg.cloneNode(true);
-    newImg.src = linkPhoto;
-    supplyElement.querySelector(".popup__photos").appendChild(newImg);
-  });
+  if (elem.offer.photos !== undefined) {
+    elem.offer.photos.forEach((linkPhoto) => {
+      const newImg = getImgTeg.cloneNode(true);
+      newImg.src = linkPhoto;
+      supplyElement.querySelector(".popup__photos").appendChild(newImg);
+    });
+  }
 
   supplyElement.querySelector(".popup__avatar").src = elem.author.avatar;
 
   return supplyElement;
 };
 
-export { supplePopup, supply };
+export default supplePopup;
