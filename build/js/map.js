@@ -20,6 +20,14 @@ const pinMarkerIcon = L.icon({
   iconAnchor: [26, 52],
 });
 
+const curentMarker = [];
+
+const cleanMapMarker = () => {
+  curentMarker.forEach((item) => {
+    map.removeLayer(item);
+  });
+};
+
 const createMarker = (dataArr) => {
   dataArr.forEach((item) => {
     const pinMarker = L.marker(
@@ -31,6 +39,7 @@ const createMarker = (dataArr) => {
         icon: pinMarkerIcon,
       }
     );
+    curentMarker.push(pinMarker);
     pinMarker.addTo(map).bindPopup(supplePopup(item), {
       keepInView: true,
     });
