@@ -20,10 +20,10 @@ const pinMarkerIcon = L.icon({
   iconAnchor: [26, 52],
 });
 
-const curentMarker = [];
+const currentMarker = [];
 
 const cleanMapMarker = () => {
-  curentMarker.forEach((item) => {
+  currentMarker.forEach((item) => {
     map.removeLayer(item);
   });
 };
@@ -39,7 +39,7 @@ const createMarker = (dataArr) => {
         icon: pinMarkerIcon,
       }
     );
-    curentMarker.push(pinMarker);
+    currentMarker.push(pinMarker);
     pinMarker.addTo(map).bindPopup(supplePopup(item), {
       keepInView: true,
     });
@@ -67,9 +67,9 @@ const mainPinMarker = L.marker(
   }
 );
 
-const addressCurent = document.querySelector("#address");
+const addressCurrent = document.querySelector("#address");
 mainPinMarker.on("moveend", (e) => {
-  addressCurent.value = e.target
+  addressCurrent.value = e.target
     .getLatLng()
     .toString()
     .replace(/[a-zA-Z()]/g, "");

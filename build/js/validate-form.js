@@ -88,5 +88,6 @@ const onChangeHandlerForm = (evt) => {
       break;
   }
 };
+
 onRoomsNumberSelect();
 form.addEventListener("input", onChangeHandlerForm);
