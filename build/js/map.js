@@ -77,4 +77,4 @@ mainPinMarker.on("moveend", (e) => {
 
 mainPinMarker.addTo(map);
 
-export { map, createMarker };
+export { map, createMarker, cleanMapMarker };
