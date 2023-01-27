@@ -16,18 +16,5 @@ getDataSupply().then((dataBase) => {
 
 const filters = document.querySelector(".map__filters");
 filters.addEventListener("change", (e) => {
-  // подписка на один фильтр - работает
-  //   let nameFilter = e.target.name;
-  //   let nameFeatures;
-  //   if (nameFilter === "features") {
-  //     nameFeatures = e.target.value;
-  //   }
-  //   const nameOptionFilter = document.querySelector(`#${nameFilter}`).value;
-  //   sortingAdvertisement(
-  //     arrAdvertisement,
-  //     nameFilter,
-  //     nameOptionFilter,
-  //     nameFeatures
-  //   );
   sortingAdvertisement(arrAdvertisement);
 });
