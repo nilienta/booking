@@ -1,4 +1,4 @@
-<h2 align="center"><a href="">🏨 &nbsp Кексобукинг &nbsp🏯</a></h2>
+<h2 align="center"><a href="">🏨 &nbsp Букинг &nbsp🏯</a></h2>
 
 <i>Сайт посвящён ....</i>
 
