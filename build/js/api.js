@@ -4,8 +4,8 @@ async function getDataSupply() {
       "https://23.javascript.pages.academy/keksobooking/data"
     );
     return supplyResponse.json();
-  } catch (err) {
-    console.error("Произошла ошибка!", err);
+  } catch (error) {
+    console.error("Произошла ошибка!", error.message);
   }
 }
 export default getDataSupply;
