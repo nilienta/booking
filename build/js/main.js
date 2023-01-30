@@ -5,7 +5,6 @@ import AvatarUpload from "../js/avatar-upload.js";
 import getDataSupply from "./api.js";
 import { createMarker } from "../js/map.js";
 import { sortingAdvertisement } from "../js/sorting.js";
-import { handleFormSubmit } from "./post-offer.js";
 
 AvatarUpload();
 
