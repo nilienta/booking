@@ -4,32 +4,26 @@
 
 <details>
   <summary>💫&nbsp;Preview</summary>
-  <br>
-  <img alt="site preview" src="">
+  <img alt="site preview" src="https://user-images.githubusercontent.com/97403514/215559291-8da004a7-8890-42ed-bd37-bd4c3afe6369.PNG">
 </details>
 
 
-<details>
-  <summary>🛠&nbsp;Стек</summary>
-  <br>
-  &emsp;<img alt="react version" src="https://img.shields.io/badge/webpack-5.74.0-4C4CFF">
-  <img alt="react version" src="https://img.shields.io/badge/JavaScript-4C4CFF">
-  <img alt="react version" src="https://img.shields.io/badge/Leaflet-4C4CFF">
-</details>
+<h3>🛠&nbsp;Стек</h3>
+  <span>
+    &emsp;&emsp;<img alt="react version" src="https://img.shields.io/badge/webpack-5.74.0-4C4CFF">
+    <img alt="react version" src="https://img.shields.io/badge/JavaScript-4C4CFF">
+    <img alt="react version" src="https://img.shields.io/badge/Leaflet-4C4CFF">
+  </span>
 
-<details>
-  <summary>📝&nbsp;Планы</summary>
+<h3>📝&nbsp;Планы</h3>
+  &emsp;&emsp; 🏨 
   <br>
-  &emsp; 🏨 
-  <br>
-  &emsp; 🏨 
-</details>
+ &emsp;&emsp; 🏨 
 
-<details> 
-  <summary>▶&nbsp;Доступные сценарии</summary>
-  <br>
-  &emsp; <code>npm start</code> <code>npm test</code>
-</details>
+
+<h3>▶&nbsp;Доступные сценарии</h3>
+  &emsp;&emsp;<code>npm start</code> <code>npm test</code>
+
 
 
 
