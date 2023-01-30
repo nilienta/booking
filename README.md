@@ -4,6 +4,7 @@
 
 <details>
   <summary>💫&nbsp;Preview</summary>
+  <br>
   <img alt="site preview" src="https://user-images.githubusercontent.com/97403514/215559291-8da004a7-8890-42ed-bd37-bd4c3afe6369.PNG">
 </details>
 
