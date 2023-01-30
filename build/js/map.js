@@ -1,5 +1,4 @@
 import supplePopup from "./supply-element.js";
-import getDataSupply from "../js/api.js";
 
 const map = L.map("map-canvas").setView(
   {
