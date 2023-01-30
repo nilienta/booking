@@ -1,6 +1,6 @@
-const card = document.querySelector("#card").content.querySelector(".popup");
-
 const supplePopup = (elem) => {
+  const card = document.querySelector("#card").content.querySelector(".popup");
+
   const supplyElement = card.cloneNode(true);
   supplyElement.querySelector(".popup__title").textContent = elem.offer.title;
   supplyElement.querySelector(".popup__text--address").textContent =

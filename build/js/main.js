@@ -5,6 +5,7 @@ import AvatarUpload from "../js/avatar-upload.js";
 import getDataSupply from "./api.js";
 import { createMarker } from "../js/map.js";
 import { sortingAdvertisement } from "../js/sorting.js";
+import { handleFormSubmit } from "./post-offer.js";
 
 AvatarUpload();
 
@@ -15,6 +16,6 @@ getDataSupply().then((dataBase) => {
 });
 
 const filters = document.querySelector(".map__filters");
-filters.addEventListener("change", (e) => {
+filters.addEventListener("change", () => {
   sortingAdvertisement(arrAdvertisement);
 });

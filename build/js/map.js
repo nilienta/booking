@@ -46,10 +46,6 @@ const createMarker = (dataArr) => {
   });
 };
 
-getDataSupply().then((dataBase) => {
-  createMarker(dataBase);
-});
-
 const mainPinIcon = L.icon({
   iconUrl: "../img/main-pin.svg",
   iconSize: [52, 52],
