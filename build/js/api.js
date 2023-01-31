@@ -1,11 +1,8 @@
-async function getDataSupply() {
-  try {
-    const supplyResponse = await fetch(
-      "https://23.javascript.pages.academy/keksobooking/data"
-    );
-    return supplyResponse.json();
-  } catch (error) {
-    console.error("Произошла ошибка!", error.message);
-  }
-}
-export default getDataSupply;
+export const checkResponse = (res) => {
+  return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+};
+
+export const request = async (url) => {
+  const res = await fetch(url);
+  return checkResponse(res);
+};

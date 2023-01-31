@@ -43,8 +43,8 @@ const sortingGuests = (sortedArray, nameFilter, nameOptionFilter) => {
   }
 };
 
-export const sortingAdvertisement = (arrAdvertisement) => {
-  let sortedArray = [...arrAdvertisement];
+export const sortingAdvertisement = (advertisementList) => {
+  let sortedArray = [...advertisementList];
 
   const sortingOneFilter = (arr, nameFilter, nameOptionFilter) => {
     return arr.filter((item) => item.offer[nameFilter] == nameOptionFilter);
@@ -84,5 +84,5 @@ export const sortingAdvertisement = (arrAdvertisement) => {
     updateMap(sortingFeatures(sortedArray, fieldsetFeatures));
   };
 
-  sortingAll(arrAdvertisement);
+  sortingAll(advertisementList);
 };
