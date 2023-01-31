@@ -1,13 +1,11 @@
 export const sortingFeatures = (sortedArray, fieldsetFeatures) => {
-  let sortedByFeatures = [];
-  const checkedHousingFeatures = [];
+  const checkedHousingFeatures = fieldsetFeatures.reduce((features, item) => {
+    features.push(item.value);
+    return features;
+  }, []);
 
-  for (let item of fieldsetFeatures) {
-    checkedHousingFeatures.push(item.value);
-  }
-
-  sortedByFeatures = sortedArray.filter((ad) => {
-    if (ad.offer.features && checkedHousingFeatures.length > 0) {
+  const sortedByFeatures = sortedArray.filter((ad) => {
+    if (ad?.offer?.features && checkedHousingFeatures.length > 0) {
       return checkedHousingFeatures.every((feature) =>
         ad.offer.features.includes(feature)
       );

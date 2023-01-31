@@ -76,9 +76,11 @@ export const sortingAdvertisement = (advertisementList) => {
       }
     }
 
-    const fieldsetFeatures = allNameFilters[
-      allNameFilters.length - 1
-    ].querySelectorAll(".map__checkbox:checked");
+    const fieldsetFeatures = Array.from(
+      allNameFilters[allNameFilters.length - 1].querySelectorAll(
+        ".map__checkbox:checked"
+      )
+    );
     sortingFeatures(sortedArray, fieldsetFeatures);
 
     updateMap(sortingFeatures(sortedArray, fieldsetFeatures));
