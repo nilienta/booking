@@ -1,4 +1,4 @@
-const AvatarUpload = () => {
+const uploadAvatar = () => {
   const FILE_TYPES = ["gif", "jpg", "jpeg", "png"];
   const buttonFileLoader = document.querySelector(".ad-form-header__input");
   const previewAvatar = document.querySelector(".ad-form-header__preview img");
@@ -20,4 +20,4 @@ const AvatarUpload = () => {
   });
 };
 
-export default AvatarUpload;
+export default uploadAvatar;

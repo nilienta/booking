@@ -1,12 +1,12 @@
 import "../js/validate-form.js";
 import "../js/map.js";
 import "../js/sorting.js";
-import AvatarUpload from "../js/avatar-upload.js";
+import uploadAvatar from "../js/upload-avatar.js";
 import getDataSupply from "./api.js";
 import { createMarker } from "../js/map.js";
 import { sortingAdvertisement } from "../js/sorting.js";
 
-AvatarUpload();
+uploadAvatar();
 
 let arrAdvertisement = [];
 getDataSupply().then((dataBase) => {
