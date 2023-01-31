@@ -1,12 +1,17 @@
 import supplePopup from "./supply-element.js";
-import getDataSupply from "../js/api.js";
+
+const coordinatesCenterMap = {
+  X: 35.67,
+  Y: 139.76,
+};
+const initialZoomMap = 13;
 
 const map = L.map("map-canvas").setView(
   {
-    lat: 35.67,
-    lng: 139.76,
+    lat: coordinatesCenterMap.X,
+    lng: coordinatesCenterMap.Y,
   },
-  13
+  initialZoomMap
 );
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -54,8 +59,8 @@ const mainPinIcon = L.icon({
 
 const mainPinMarker = L.marker(
   {
-    lat: 35.67,
-    lng: 139.76,
+    lat: coordinatesCenterMap.X,
+    lng: coordinatesCenterMap.Y,
   },
   {
     draggable: true,
@@ -63,9 +68,9 @@ const mainPinMarker = L.marker(
   }
 );
 
-const addressCurrent = document.querySelector("#address");
+const formCurrentAddress = document.querySelector("#address");
 mainPinMarker.on("moveend", (e) => {
-  addressCurrent.value = e.target
+  formCurrentAddress.value = e.target
     .getLatLng()
     .toString()
     .replace(/[a-zA-Z()]/g, "");
