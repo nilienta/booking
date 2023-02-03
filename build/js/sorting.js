@@ -6,25 +6,26 @@ const updateMap = (newArr) => {
   createMarker(newArr);
 };
 
-const PriceRange = {
-  LOW: {
+const PRICE_RANGE = {
+  low: {
     MIN: 0,
     MAX: 10000,
   },
-  MIDDLE: {
+  middle: {
     MIN: 10001,
     MAX: 50000,
   },
-  HIGH: {
+  high: {
     MIN: 50001,
     MAX: 1000000,
   },
 };
-
+const GUESTS_AMOUNT = { one: "1", two: "2", moreTwo: "0" };
+const AVAILABLE_FILTERS = { any: "any", price: "price", guests: "guests" };
 // TODO: попробовать объединить фильтр, отличается nameOptionFilter и условный параметр
 
 const sortingPrice = (sortedArray, nameFilter, nameOptionFilter) => {
-  const filteringPriceRange = PriceRange[nameOptionFilter.toUpperCase()];
+  const filteringPriceRange = PRICE_RANGE[nameOptionFilter];
   return sortedArray.filter(
     (item) =>
       item.offer[nameFilter] >= filteringPriceRange.MIN &&
@@ -34,13 +35,14 @@ const sortingPrice = (sortedArray, nameFilter, nameOptionFilter) => {
 
 // TODO: избавиться от повторного вызова фильтра
 const sortingGuests = (sortedArray, nameFilter, nameOptionFilter) => {
-  if (nameOptionFilter === "1") {
-    return sortedArray.filter((item) => item.offer[nameFilter] === 1);
-  } else if (nameOptionFilter === "2") {
-    return sortedArray.filter((item) => item.offer[nameFilter] === 2);
-  } else if (nameOptionFilter === "0") {
-    return sortedArray.filter((item) => item.offer[nameFilter] > 2);
-  }
+  const guestMap = new Map([
+    [GUESTS_AMOUNT.one, { handler: (item) => item.offer[nameFilter] === 1 }],
+    [GUESTS_AMOUNT.two, { handler: (item) => item.offer[nameFilter] === 2 }],
+    [GUESTS_AMOUNT.moreTwo, { handler: (item) => item.offer[nameFilter] > 2 }],
+  ]);
+  return sortedArray.filter((item) =>
+    guestMap.get(nameOptionFilter).handler(item)
+  );
 };
 
 export const sortingAdvertisement = (advertisementList) => {
@@ -54,13 +56,13 @@ export const sortingAdvertisement = (advertisementList) => {
     const allNameFilters =
       document.querySelectorAll("form.map__filters")[0].children;
 
-    for (let i = 0; i < allNameFilters.length - 1; i++) {
-      const nameFilter = allNameFilters[i].id.split("-")[1];
-      const nameOptionFilter = allNameFilters[i].value;
-      if (nameOptionFilter !== "any") {
-        if (nameFilter === "price") {
+    for (let index = 0; index < allNameFilters.length - 1; index++) {
+      const nameFilter = allNameFilters[index].id.split("-")[1];
+      const nameOptionFilter = allNameFilters[index].value;
+      if (nameOptionFilter !== AVAILABLE_FILTERS.any) {
+        if (nameFilter === AVAILABLE_FILTERS.price) {
           sortedArray = sortingPrice(sortedArray, nameFilter, nameOptionFilter);
-        } else if (nameFilter === "guests") {
+        } else if (nameFilter === AVAILABLE_FILTERS.guests) {
           sortedArray = sortingGuests(
             sortedArray,
             nameFilter,
