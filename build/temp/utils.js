@@ -1,5 +1,6 @@
 import { random } from "../js/random.js";
 
+//TODO переделать
 const getRandomElementRange = (lower = 0, upper, floating) => {
   let float = false;
   if (floating) {
@@ -10,7 +11,7 @@ const getRandomElementRange = (lower = 0, upper, floating) => {
   return randomNumber;
 };
 
-const getRandomElemArr = (arr) => {
+const getRandomElements = (arr) => {
   const index = getRandomElementRange(0, arr.length - 1, 0);
   return arr[index];
 };
@@ -23,4 +24,4 @@ const getArrRandomLength = (arr) => {
   return list;
 };
 
-export { getRandomElementRange, getRandomElemArr, getArrRandomLength };
+export { getRandomElementRange, getRandomElements, getArrRandomLength };

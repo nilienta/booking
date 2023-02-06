@@ -1,4 +1,4 @@
-const titles = [
+const TITLES = [
   "У Тамары",
   "Детский дом",
   "Гараж",
@@ -6,7 +6,7 @@ const titles = [
   "Жилье с родителями моего парня",
 ];
 
-const arrFeatures = [
+const FEATURES = [
   "wifi",
   "dishwasher",
   "parking",
@@ -15,7 +15,7 @@ const arrFeatures = [
   "conditioner",
 ];
 
-const descriptions = [
+const DESCRIPTIONS = [
   "Весело и вкусно",
   "Грустно и тоскливо",
   "Забавно и уныло",
@@ -23,7 +23,7 @@ const descriptions = [
   "Живо и бодро",
 ];
 
-const arrPhotos = [
+const PHOTOS = [
   "../img/hotel-1.jpg",
   "../img/hotel-2.jpg",
   "../img/hotel-3.jpg",
@@ -32,4 +32,4 @@ const arrPhotos = [
   "../img/hotel-6.jpg",
 ];
 
-export { titles, arrFeatures, descriptions, arrPhotos };
+export { TITLES, FEATURES, DESCRIPTIONS, PHOTOS };

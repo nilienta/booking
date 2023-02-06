@@ -2,92 +2,104 @@ const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
 const MAX_PRICE_VALUE = 1000000;
 
-const RoomCapacities = {
+const ROOM_CAPACITIES = {
   1: [1],
   2: [1, 2],
   3: [1, 2, 3],
   100: [0],
 };
 
-const MinPrices = {
+const MIN_PRICES = {
   palace: 10000,
   flat: 1000,
   house: 5000,
   bungalow: 10,
 };
 
-const form = document.querySelector(".notice");
-const title = document.querySelector("#title");
-const price = document.querySelector("#price");
-const type = document.querySelector("#type");
-const roomsNumberSelect = document.querySelector("#room_number");
-const capacitySelect = document.querySelector("#capacity");
+const sectionNoticeFromBody = document.querySelector(".notice");
+const inputTextTitleFromBody = document.querySelector("#title");
+const inputNumberPriceFromBody = document.querySelector("#price");
+const selectTypeFromBody = document.querySelector("#type");
+const selectRoomsNumberFromBody = document.querySelector("#room_number");
+const selectCapacityFromBody = document.querySelector("#capacity");
 
-const validateTitle = () => {
-  const valueLength = title.value.length;
-
-  if (valueLength < MIN_TITLE_LENGTH) {
-    title.setCustomValidity(`Ещё ${MIN_TITLE_LENGTH - valueLength} симв.`);
-  } else if (valueLength > MAX_TITLE_LENGTH) {
-    title.setCustomValidity(
-      `Удалите лишнее ${valueLength - MAX_TITLE_LENGTH} симв.`
+const validateLengthTextTitle = () => {
+  const lengthTextTitle = inputTextTitleFromBody.value.length;
+  // TODO оптимизировать код
+  if (lengthTextTitle < MIN_TITLE_LENGTH) {
+    inputTextTitleFromBody.setCustomValidity(
+      `Ещё ${MIN_TITLE_LENGTH - lengthTextTitle} симв.`
+    );
+  } else if (lengthTextTitle > MAX_TITLE_LENGTH) {
+    inputTextTitleFromBody.setCustomValidity(
+      `Удалите лишнее ${lengthTextTitle - MAX_TITLE_LENGTH} симв.`
     );
   } else {
-    title.setCustomValidity("");
+    inputTextTitleFromBody.setCustomValidity("");
   }
 
-  title.reportValidity();
+  inputTextTitleFromBody.reportValidity();
 };
 
-const validatePrice = () => {
-  const minPrice = MinPrices[type.value];
-  const valueLength = price.value;
-  if (valueLength > MAX_PRICE_VALUE) {
+const validateValuePrice = () => {
+  // TODO оптимизировать код
+  // TODO Добавить подписку на изменение типа дома
+  const minPriceForSelectType = MIN_PRICES[selectTypeFromBody.value];
+  const valuePrice = inputNumberPriceFromBody.value;
+  if (valuePrice > MAX_PRICE_VALUE) {
     price.setCustomValidity(`Максимальная цена ${MAX_PRICE_VALUE} деревянных`);
-  } else if (valueLength < minPrice) {
-    price.setCustomValidity(`Минимальная цена ${minPrice} деревянных`);
+  } else if (valuePrice < minPriceForSelectType) {
+    price.setCustomValidity(
+      `Минимальная цена ${minPriceForSelectType} деревянных`
+    );
   } else {
-    price.setCustomValidity("");
+    inputNumberPriceFromBody.setCustomValidity("");
   }
 
-  price.reportValidity();
+  inputNumberPriceFromBody.reportValidity();
 };
 
-const onRoomsNumberSelect = () => {
-  const seatingCapacityOptions = capacitySelect.querySelectorAll("option");
-  const roomsNumber = Number(roomsNumberSelect.value);
-  const possibleCapacities = RoomCapacities[roomsNumber];
+const sortCapacityPerRoomsNumber = () => {
+  const optionsFromSelectCapacity =
+    selectCapacityFromBody.querySelectorAll("option");
+  const currentRoomsNumber = Number(selectRoomsNumberFromBody.value);
+  const possibleCapacities = ROOM_CAPACITIES[currentRoomsNumber];
 
-  seatingCapacityOptions.forEach((option) => {
+  optionsFromSelectCapacity.forEach((option) => {
     option.disabled = true;
   });
-
-  possibleCapacities.forEach((seatsAmount) => {
-    seatingCapacityOptions.forEach((option) => {
-      if (Number(option.value) === seatsAmount) {
+  // TODO оптимизировать
+  possibleCapacities.forEach((capacity) => {
+    optionsFromSelectCapacity.forEach((option) => {
+      if (Number(option.value) === capacity) {
         option.disabled = false;
       }
     });
-    if (!possibleCapacities.includes(Number(capacitySelect.value))) {
-      const maxCapacity = possibleCapacities[possibleCapacities.length - 1];
-      capacitySelect.value = maxCapacity;
+
+    const hasPossibleCapacitySelectValue = possibleCapacities.includes(
+      Number(selectCapacityFromBody.value)
+    );
+    if (!hasPossibleCapacitySelectValue) {
+      const maxPossibleCapacity =
+        possibleCapacities[possibleCapacities.length - 1];
+      selectCapacityFromBody.value = maxPossibleCapacity;
     }
   });
 };
 
-const onChangeHandlerForm = (evt) => {
+const onChangeHandlerNotice = (evt) => {
   switch (evt.target) {
-    case title:
-      validateTitle();
+    case inputTextTitleFromBody:
+      validateLengthTextTitle();
       break;
-    case price:
-      validatePrice();
+    case inputNumberPriceFromBody:
+      validateValuePrice();
       break;
-    case roomsNumberSelect:
-      onRoomsNumberSelect();
+    case selectRoomsNumberFromBody:
+      sortCapacityPerRoomsNumber();
       break;
   }
 };
 
-onRoomsNumberSelect();
-form.addEventListener("input", onChangeHandlerForm);
+sortCapacityPerRoomsNumber();
+sectionNoticeFromBody.addEventListener("input", onChangeHandlerNotice);

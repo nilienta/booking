@@ -9,6 +9,7 @@ import { arrFeatures } from "../js/data.js";
 import { descriptions } from "../js/data.js";
 import { arrPhotos } from "../js/data.js";
 
+//TODO удалить код?
 let coordinates = {
   lat: getRandomElementRange(54.677, 54.708, 5),
   lng: getRandomElementRange(20.504, 20.507, 5),
@@ -23,6 +24,7 @@ const createSupply = () => {
     location: coordinates,
   };
 };
+
 const createOffer = () => {
   return {
     title: getRandomElemArr(titles),
@@ -39,4 +41,4 @@ const createOffer = () => {
   };
 };
 
-export default createSupplyAmount;
+export default createSupply;

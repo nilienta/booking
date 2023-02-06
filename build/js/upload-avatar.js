@@ -1,21 +1,23 @@
 const uploadAvatar = () => {
   const FILE_TYPES = ["gif", "jpg", "jpeg", "png"];
-  const buttonFileLoader = document.querySelector("#avatar");
-  const previewAvatar = document.querySelector("#avatar-preview");
+  const inputFileAvatarFromBody = document.querySelector("#avatar");
+  const imgPreviewAvatarFromBody = document
+    .querySelector("#avatar-preview")
+    .querySelector("img");
 
-  buttonFileLoader.addEventListener("change", () => {
-    const file = buttonFileLoader.files[0];
-    const fileName = file.name.toLowerCase();
+  inputFileAvatarFromBody.addEventListener("change", () => {
+    const fileAvatar = inputFileAvatarFromBody.files[0];
+    const nameFileAvatar = fileAvatar.name.toLowerCase();
 
-    const formatCorresponds = FILE_TYPES.some((item) =>
-      fileName.endsWith(item)
+    const isFormatFileCorrect = FILE_TYPES.some((item) =>
+      nameFileAvatar.endsWith(item)
     );
-    if (formatCorresponds) {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        previewAvatar.src = reader.result;
+    if (isFormatFileCorrect) {
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        imgPreviewAvatarFromBody.src = fileReader.result;
       });
-      reader.readAsDataURL(file);
+      fileReader.readAsDataURL(fileAvatar);
     }
   });
 };

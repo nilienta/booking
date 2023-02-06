@@ -1,9 +1,9 @@
 export const createWindowError = () => {
-  const divError = document
+  const divErrorFromBody = document
     .querySelector("#error")
     .content.querySelector(".error")
     .cloneNode(true);
 
-  const elementMain = document.querySelector("main");
-  elementMain.prepend(divError);
+  const mainFromBody = document.querySelector("main");
+  mainFromBody.prepend(divErrorFromBody);
 };

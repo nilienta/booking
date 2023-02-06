@@ -1,9 +1,10 @@
-import supplePopup from "./supply-element.js";
+import createPopupAd from "./supply-element.js";
 
 const coordinatesCenterMap = {
   X: 35.67,
   Y: 139.76,
 };
+
 const initialZoomMap = 13;
 
 const map = L.map("map-canvas").setView(
@@ -14,68 +15,69 @@ const map = L.map("map-canvas").setView(
   initialZoomMap
 );
 
+// TODO: понять что тут происходит и дать название
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-const pinMarkerIcon = L.icon({
+const createIconMarker = L.icon({
   iconUrl: "../img/pin.svg",
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
-const currentMarker = [];
-
+//TODO переписать одной функцией
+const currentMarkers = [];
 const cleanMapMarker = () => {
-  currentMarker.forEach((item) => {
-    map.removeLayer(item);
+  currentMarkers.forEach((marker) => {
+    map.removeLayer(marker);
   });
 };
 
-const createMarker = (dataArr) => {
-  dataArr.forEach((item) => {
-    const pinMarker = L.marker(
+const addMarker = (adList) => {
+  adList.forEach((ad) => {
+    const createMarker = L.marker(
       {
-        lat: item.location.lat,
-        lng: item.location.lng,
+        lat: ad.location.lat,
+        lng: ad.location.lng,
       },
       {
-        icon: pinMarkerIcon,
+        icon: createIconMarker,
       }
     );
-    currentMarker.push(pinMarker);
-    pinMarker.addTo(map).bindPopup(supplePopup(item), {
+    currentMarkers.push(createMarker);
+    createMarker.addTo(map).bindPopup(createPopupAd(ad), {
       keepInView: true,
     });
   });
 };
 
-const mainPinIcon = L.icon({
+const mainIconPin = L.icon({
   iconUrl: "../img/main-pin.svg",
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
-const mainPinMarker = L.marker(
+const mainMarkerPin = L.marker(
   {
     lat: coordinatesCenterMap.X,
     lng: coordinatesCenterMap.Y,
   },
   {
     draggable: true,
-    icon: mainPinIcon,
+    icon: mainIconPin,
   }
 );
 
-const formCurrentAddress = document.querySelector("#address");
-mainPinMarker.on("moveend", (e) => {
-  formCurrentAddress.value = e.target
+const inputAddressFromBody = document.querySelector("#address");
+mainMarkerPin.on("moveend", (e) => {
+  inputAddressFromBody.value = e.target
     .getLatLng()
     .toString()
     .replace(/[a-zA-Z()]/g, "");
 });
 
-mainPinMarker.addTo(map);
+mainMarkerPin.addTo(map);
 
-export { map, createMarker, cleanMapMarker };
+export { addMarker, cleanMapMarker };

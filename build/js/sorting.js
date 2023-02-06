@@ -1,9 +1,9 @@
-import { createMarker, cleanMapMarker } from "./map";
+import { addMarker, cleanMapMarker } from "./map";
 import { sortingFeatures } from "./sorting-features";
 
 const updateMap = (newArr) => {
   cleanMapMarker();
-  createMarker(newArr);
+  addMarker(newArr);
 };
 
 const PRICE_RANGE = {
@@ -22,71 +22,75 @@ const PRICE_RANGE = {
 };
 const GUESTS_AMOUNT = { one: "1", two: "2", moreTwo: "0" };
 const AVAILABLE_FILTERS = { any: "any", price: "price", guests: "guests" };
-// TODO: попробовать объединить фильтр, отличается nameOptionFilter и условный параметр
+// TODO: попробовать объединить фильтр, отличается selectValueFilter и условный параметр
 
-const sortingPrice = (sortedArray, nameFilter, nameOptionFilter) => {
-  const filteringPriceRange = PRICE_RANGE[nameOptionFilter];
+const sortingPrice = (sortedArray, nameFilter, selectValueFilter) => {
+  const priceRangeForSelectFilter = PRICE_RANGE[selectValueFilter];
   return sortedArray.filter(
     (item) =>
-      item.offer[nameFilter] >= filteringPriceRange.MIN &&
-      item.offer[nameFilter] <= filteringPriceRange.MAX
+      item.offer[nameFilter] >= priceRangeForSelectFilter.MIN &&
+      item.offer[nameFilter] <= priceRangeForSelectFilter.MAX
   );
 };
 
 // TODO: избавиться от повторного вызова фильтра
-const sortingGuests = (sortedArray, nameFilter, nameOptionFilter) => {
-  const guestMap = new Map([
+const sortingGuests = (sortedArray, nameFilter, selectValueFilter) => {
+  const guestsMap = new Map([
     [GUESTS_AMOUNT.one, { handler: (item) => item.offer[nameFilter] === 1 }],
     [GUESTS_AMOUNT.two, { handler: (item) => item.offer[nameFilter] === 2 }],
     [GUESTS_AMOUNT.moreTwo, { handler: (item) => item.offer[nameFilter] > 2 }],
   ]);
   return sortedArray.filter((item) =>
-    guestMap.get(nameOptionFilter).handler(item)
+    guestsMap.get(selectValueFilter).handler(item)
   );
 };
 
-export const sortingAdvertisement = (advertisementList) => {
-  let sortedArray = [...advertisementList];
+export const sortingAd = (adList) => {
+  let sortedArray = [...adList];
 
-  const sortingOneFilter = (arr, nameFilter, nameOptionFilter) => {
-    return arr.filter((item) => item.offer[nameFilter] == nameOptionFilter);
+  const sortingAnyFilter = (arr, nameFilter, selectValueFilter) => {
+    return arr.filter((item) => item.offer[nameFilter] == selectValueFilter);
   };
 
-  const sortingAll = () => {
-    const allNameFilters =
-      document.querySelectorAll("form.map__filters")[0].children;
-
-    for (let index = 0; index < allNameFilters.length - 1; index++) {
-      const nameFilter = allNameFilters[index].id.split("-")[1];
-      const nameOptionFilter = allNameFilters[index].value;
-      if (nameOptionFilter !== AVAILABLE_FILTERS.any) {
+  const sortByAllFilters = () => {
+    //TODO Array.from(temp1) убрать цикл for
+    const selectFiltersFromBody =
+      document.querySelector(".map__filters").children;
+    for (let index = 0; index < selectFiltersFromBody.length - 1; index++) {
+      const nameFilter = selectFiltersFromBody[index].id.split("-")[1];
+      const selectValueFilter = selectFiltersFromBody[index].value;
+      if (selectValueFilter !== AVAILABLE_FILTERS.any) {
         if (nameFilter === AVAILABLE_FILTERS.price) {
-          sortedArray = sortingPrice(sortedArray, nameFilter, nameOptionFilter);
+          sortedArray = sortingPrice(
+            sortedArray,
+            nameFilter,
+            selectValueFilter
+          );
         } else if (nameFilter === AVAILABLE_FILTERS.guests) {
           sortedArray = sortingGuests(
             sortedArray,
             nameFilter,
-            nameOptionFilter
+            selectValueFilter
           );
         } else {
-          sortedArray = sortingOneFilter(
+          sortedArray = sortingAnyFilter(
             sortedArray,
             nameFilter,
-            nameOptionFilter
+            selectValueFilter
           );
         }
       }
     }
 
-    const fieldsetFeatures = Array.from(
-      allNameFilters[allNameFilters.length - 1].querySelectorAll(
+    const inputCheckedFromSelectFilters = Array.from(
+      selectFiltersFromBody[selectFiltersFromBody.length - 1].querySelectorAll(
         ".map__checkbox:checked"
       )
     );
-    sortingFeatures(sortedArray, fieldsetFeatures);
+    sortingFeatures(sortedArray, inputCheckedFromSelectFilters);
 
-    updateMap(sortingFeatures(sortedArray, fieldsetFeatures));
+    updateMap(sortingFeatures(sortedArray, inputCheckedFromSelectFilters));
   };
 
-  sortingAll(advertisementList);
+  sortByAllFilters(adList);
 };
