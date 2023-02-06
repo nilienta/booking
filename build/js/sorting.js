@@ -1,9 +1,9 @@
-import { addMarker, cleanMapMarker } from "./map";
+import { addMarkersByList, cleanMapMarker } from "./map";
 import { sortingFeatures } from "./sorting-features";
 
-const updateMap = (newArr) => {
+const updateMap = (sortedArray) => {
   cleanMapMarker();
-  addMarker(newArr);
+  addMarkersByList(sortedArray);
 };
 
 const PRICE_RANGE = {
@@ -22,7 +22,6 @@ const PRICE_RANGE = {
 };
 const GUESTS_AMOUNT = { one: "1", two: "2", moreTwo: "0" };
 const AVAILABLE_FILTERS = { any: "any", price: "price", guests: "guests" };
-// TODO: попробовать объединить фильтр, отличается selectValueFilter и условный параметр
 
 const sortingPrice = (sortedArray, nameFilter, selectValueFilter) => {
   const priceRangeForSelectFilter = PRICE_RANGE[selectValueFilter];
@@ -33,7 +32,6 @@ const sortingPrice = (sortedArray, nameFilter, selectValueFilter) => {
   );
 };
 
-// TODO: избавиться от повторного вызова фильтра
 const sortingGuests = (sortedArray, nameFilter, selectValueFilter) => {
   const guestsMap = new Map([
     [GUESTS_AMOUNT.one, { handler: (item) => item.offer[nameFilter] === 1 }],
@@ -53,12 +51,14 @@ export const sortingAd = (adList) => {
   };
 
   const sortByAllFilters = () => {
-    //TODO Array.from(temp1) убрать цикл for
-    const selectFiltersFromBody =
-      document.querySelector(".map__filters").children;
-    for (let index = 0; index < selectFiltersFromBody.length - 1; index++) {
-      const nameFilter = selectFiltersFromBody[index].id.split("-")[1];
-      const selectValueFilter = selectFiltersFromBody[index].value;
+    const selectsFiltersFromBody = Array.from(
+      document.querySelectorAll(".map__filter")
+    );
+
+    selectsFiltersFromBody.forEach((item) => {
+      const nameFilter = item.id.split("-")[1];
+      const selectValueFilter = item.value;
+      //TODO попробовать редьюс
       if (selectValueFilter !== AVAILABLE_FILTERS.any) {
         if (nameFilter === AVAILABLE_FILTERS.price) {
           sortedArray = sortingPrice(
@@ -80,16 +80,9 @@ export const sortingAd = (adList) => {
           );
         }
       }
-    }
+    });
 
-    const inputCheckedFromSelectFilters = Array.from(
-      selectFiltersFromBody[selectFiltersFromBody.length - 1].querySelectorAll(
-        ".map__checkbox:checked"
-      )
-    );
-    sortingFeatures(sortedArray, inputCheckedFromSelectFilters);
-
-    updateMap(sortingFeatures(sortedArray, inputCheckedFromSelectFilters));
+    updateMap(sortingFeatures(sortedArray));
   };
 
   sortByAllFilters(adList);

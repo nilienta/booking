@@ -25,7 +25,7 @@ const createPopupAd = (elem) => {
     return liElFeature;
   };
 
-  if (elem.offer.features !== undefined) {
+  if (elem.offer.features) {
     const ulFeaturesFromPopupAd =
       articlePopupAd.querySelector(".popup__features");
     ulFeaturesFromPopupAd.innerHTML = "";
@@ -40,7 +40,7 @@ const createPopupAd = (elem) => {
   const imgAdFromPopupAd = articlePopupAd.querySelector(".popup__photo");
   articlePopupAd.querySelector(".popup__photos").textContent = "";
 
-  if (elem.offer.photos !== undefined) {
+  if (elem.offer.photos) {
     elem.offer.photos.forEach((linkPhoto) => {
       const imgAd = imgAdFromPopupAd.cloneNode(true);
       imgAd.src = linkPhoto;
