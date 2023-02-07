@@ -1,10 +1,5 @@
-import { addMarkersByList, cleanMapMarker } from "./map";
+import markersList from "./edit-marker-list.js";
 import { sortingFeatures } from "./sorting-features";
-
-const updateMap = (sortedArray) => {
-  cleanMapMarker();
-  addMarkersByList(sortedArray);
-};
 
 const PRICE_RANGE = {
   low: {
@@ -82,7 +77,8 @@ export const sortingAd = (adList) => {
       }
     });
 
-    updateMap(sortingFeatures(sortedArray));
+    //  updateMap(sortingFeatures(sortedArray));
+    markersList.update(sortingFeatures(sortedArray));
   };
 
   sortByAllFilters(adList);

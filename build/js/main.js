@@ -3,7 +3,7 @@ import "../js/map.js";
 import "../js/sorting.js";
 import uploadAvatar from "../js/upload-avatar.js";
 import { fetchRequest } from "./api.js";
-import { addMarker } from "../js/map.js";
+import markersList from "./edit-marker-list.js";
 import { sortingAd } from "../js/sorting.js";
 
 uploadAvatar();
@@ -16,7 +16,7 @@ fetchRequest(BOOKING_URL_DATA)
   .then((res) => {
     if (res) {
       adList = res;
-      addMarker(res);
+      markersList.add(res);
     }
   })
   .catch((error) => {
