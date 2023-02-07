@@ -1,12 +1,12 @@
-import "../js/validate-form.js";
-import "../js/map.js";
-import "../js/sorting.js";
+import runValidateForm from "../js/validate-form.js";
 import uploadAvatar from "../js/upload-avatar.js";
 import { fetchRequest } from "./api.js";
 import markersList from "./edit-marker-list.js";
 import { sortingAd } from "../js/sorting.js";
 
+//TODO переработать порядок вызова функций и импортов
 uploadAvatar();
+runValidateForm();
 
 const BOOKING_URL_DATA =
   "https://23.javascript.pages.academy/keksobooking/data";

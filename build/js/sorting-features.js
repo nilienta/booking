@@ -1,4 +1,4 @@
-export const sortingFeatures = (sortedArray) => {
+const sortingFeatures = (sortedArray) => {
   const inputCheckedFromFieldsetFeatures = Array.from(
     document.querySelectorAll("#housing-features > .map__checkbox:checked")
   );
@@ -20,3 +20,5 @@ export const sortingFeatures = (sortedArray) => {
 
   return sortedByFeatures.length > 0 ? sortedByFeatures : sortedArray;
 };
+
+export default sortingFeatures;

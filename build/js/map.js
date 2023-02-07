@@ -1,3 +1,4 @@
+//---------------------------------------------create map------------------------------------------------
 const COORDINATES_CENTER_MAP = {
   X: 35.67,
   Y: 139.76,
@@ -5,7 +6,7 @@ const COORDINATES_CENTER_MAP = {
 
 const INITIAL_ZOOM_MAP = 13;
 
-export const map = L.map("map-canvas").setView(
+const map = L.map("map-canvas").setView(
   {
     lat: COORDINATES_CENTER_MAP.X,
     lng: COORDINATES_CENTER_MAP.Y,
@@ -18,6 +19,13 @@ const layerMap = L.tileLayer(
   {}
 ).addTo(map);
 
+const usualIconMarker = L.icon({
+  iconUrl: "../img/pin.svg",
+  iconSize: [52, 52],
+  iconAnchor: [26, 52],
+});
+
+//-------------------------------------create main marker on map-----------------------------------------
 const mainIconPin = L.icon({
   iconUrl: "../img/main-pin.svg",
   iconSize: [52, 52],
@@ -35,13 +43,6 @@ const mainMarkerPin = L.marker(
   }
 );
 mainMarkerPin.addTo(map);
-
-export const usualIconMarker = L.icon({
-  iconUrl: "../img/pin.svg",
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
-});
-
 mainMarkerPin.on("moveend", (e) => {
   getCoordinatesFromMap(e);
 });
@@ -53,3 +54,5 @@ const getCoordinatesFromMap = (e) => {
     .toString()
     .replace(/[a-zA-Z()]/g, "");
 };
+
+export { map, usualIconMarker };

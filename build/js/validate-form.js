@@ -87,6 +87,10 @@ const sortCapacityPerRoomsNumber = () => {
   });
 };
 
+//TODO добавить валидацию на кооринаты регуляркой
+//TODO добавить валидацию на описание
+//TODO проработать превью фото как у аватара
+
 const onChangeHandlerNotice = (evt) => {
   switch (evt.target) {
     case inputTextTitleFromBody:
@@ -101,5 +105,9 @@ const onChangeHandlerNotice = (evt) => {
   }
 };
 
-sortCapacityPerRoomsNumber();
-sectionNoticeFromBody.addEventListener("input", onChangeHandlerNotice);
+const runValidateForm = () => {
+  sortCapacityPerRoomsNumber();
+  sectionNoticeFromBody.addEventListener("input", onChangeHandlerNotice);
+};
+
+export default runValidateForm;
