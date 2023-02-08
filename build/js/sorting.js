@@ -1,7 +1,6 @@
 import markersList from "./edit-marker-list.js";
 import sortingFeatures from "./sorting-features";
 
-//FIXME не правильно работает сортировка, повторить: Бунгало-вай-фай-прайс до 10
 const PRICE_RANGE = {
   low: {
     MIN: 0,

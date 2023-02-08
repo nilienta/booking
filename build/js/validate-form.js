@@ -22,41 +22,68 @@ const inputNumberPriceFromBody = document.querySelector("#price");
 const selectTypeFromBody = document.querySelector("#type");
 const selectRoomsNumberFromBody = document.querySelector("#room_number");
 const selectCapacityFromBody = document.querySelector("#capacity");
+const inputAddressFromBody = document.querySelector("#address");
 
 const validateLengthTextTitle = () => {
   const lengthTextTitle = inputTextTitleFromBody.value.length;
-  // TODO оптимизировать код
+  const displayValidityText = {
+    manySymbol() {
+      inputTextTitleFromBody.setCustomValidity(
+        `Удалите лишнее ${lengthTextTitle - MAX_TITLE_LENGTH} симв.`
+      );
+    },
+    fewSymbol() {
+      inputTextTitleFromBody.setCustomValidity(
+        `Ещё ${MIN_TITLE_LENGTH - lengthTextTitle} симв.`
+      );
+    },
+  };
+
   if (lengthTextTitle < MIN_TITLE_LENGTH) {
-    inputTextTitleFromBody.setCustomValidity(
-      `Ещё ${MIN_TITLE_LENGTH - lengthTextTitle} симв.`
-    );
+    displayValidityText.fewSymbol();
   } else if (lengthTextTitle > MAX_TITLE_LENGTH) {
-    inputTextTitleFromBody.setCustomValidity(
-      `Удалите лишнее ${lengthTextTitle - MAX_TITLE_LENGTH} симв.`
-    );
+    displayValidityText.manySymbol();
   } else {
     inputTextTitleFromBody.setCustomValidity("");
   }
-
   inputTextTitleFromBody.reportValidity();
 };
 
 const validateValuePrice = () => {
-  // TODO оптимизировать код
-  // TODO Добавить подписку на изменение типа дома
   const minPriceForSelectType = MIN_PRICES[selectTypeFromBody.value];
+  const displayValidityText = {
+    maxPrice() {
+      inputNumberPriceFromBody.setCustomValidity(
+        `Максимальная цена ${MAX_PRICE_VALUE} деревянных`
+      );
+    },
+    minPrice() {
+      inputNumberPriceFromBody.setCustomValidity(
+        `Минимальная цена ${minPriceForSelectType} деревянных`
+      );
+    },
+  };
+
   const valuePrice = inputNumberPriceFromBody.value;
   if (valuePrice > MAX_PRICE_VALUE) {
-    price.setCustomValidity(`Максимальная цена ${MAX_PRICE_VALUE} деревянных`);
+    displayValidityText.maxPrice();
   } else if (valuePrice < minPriceForSelectType) {
-    price.setCustomValidity(
-      `Минимальная цена ${minPriceForSelectType} деревянных`
-    );
+    displayValidityText.minPrice();
   } else {
     inputNumberPriceFromBody.setCustomValidity("");
   }
-
   inputNumberPriceFromBody.reportValidity();
+};
+
+const validateCoordinates = () => {
+  const coordinates = inputAddressFromBody.value;
+  const regex =
+    /^(-?[1-8]?\d(?:\.\d{1,18})?|90(?:\.0{1,18})?),(\s|)(-?(?:1[0-7]|[1-9])?\d(?:\.\d{1,18})?|180(?:\.0{1,18})?)$/;
+  let valid = regex.test(coordinates);
+  inputAddressFromBody.setCustomValidity(
+    valid ? "" : "Не верный формат координат"
+  );
+  inputAddressFromBody.reportValidity();
 };
 
 const sortCapacityPerRoomsNumber = () => {
@@ -66,13 +93,13 @@ const sortCapacityPerRoomsNumber = () => {
   const possibleCapacities = ROOM_CAPACITIES[currentRoomsNumber];
 
   optionsFromSelectCapacity.forEach((option) => {
-    option.disabled = true;
+    option.enable = false;
   });
-  // TODO оптимизировать
+
   possibleCapacities.forEach((capacity) => {
     optionsFromSelectCapacity.forEach((option) => {
       if (Number(option.value) === capacity) {
-        option.disabled = false;
+        option.enable = true;
       }
     });
 
@@ -101,6 +128,9 @@ const onChangeHandlerNotice = (evt) => {
       break;
     case selectRoomsNumberFromBody:
       sortCapacityPerRoomsNumber();
+      break;
+    case inputAddressFromBody:
+      validateCoordinates();
       break;
   }
 };
