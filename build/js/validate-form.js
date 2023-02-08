@@ -24,6 +24,7 @@ const selectRoomsNumberFromBody = document.querySelector("#room_number");
 const selectCapacityFromBody = document.querySelector("#capacity");
 const inputAddressFromBody = document.querySelector("#address");
 const textareaDescriptionFromBody = document.querySelector("#description");
+const inputFileFromBodyImg = document.querySelector("#images");
 
 const validateLengthTextTitle = () => {
   const lengthTextTitle = inputTextTitleFromBody.value.length;
@@ -123,7 +124,46 @@ const validateLengthDescription = () => {
   textareaDescriptionFromBody.reportValidity();
 };
 
-//TODO проработать превью фото как у аватара
+//FIXME теряет имя, либо происходит дублирование картинок
+const validateLoadPhoto = () => {
+  const FILE_TYPES = ["gif", "jpg", "jpeg", "png"];
+  const imgPreviewAvatarFromBody = document.querySelector(".ad-form__photo");
+  imgPreviewAvatarFromBody.style = "display: flex;gap: 5px;";
+  const countPhoto = Array.from(
+    imgPreviewAvatarFromBody.querySelectorAll("img")
+  ).length;
+  console.log(countPhoto);
+
+  const createImgForPhoto = (fileReader) => {
+    const previewPhoto = document.createElement("img");
+    previewPhoto.height = "70";
+    previewPhoto.src = fileReader.result;
+    imgPreviewAvatarFromBody.appendChild(previewPhoto);
+  };
+
+  inputFileFromBodyImg.addEventListener("change", () => {
+    const fileAvatar = inputFileFromBodyImg.files[0];
+    const nameFileAvatar = fileAvatar.name.toLowerCase();
+
+    const isFormatFileCorrect = FILE_TYPES.some((item) =>
+      nameFileAvatar.endsWith(item)
+    );
+
+    if (isFormatFileCorrect) {
+      const fileReader = new FileReader();
+
+      fileReader.addEventListener("load", () => {
+        createImgForPhoto(fileReader);
+      });
+      fileReader.readAsDataURL(fileAvatar);
+      fileReader.addEventListener("error", () => {
+        console.error("Произошла ошибка при чтении файла");
+        return;
+      });
+    }
+    inputFileFromBodyImg.value = "";
+  });
+};
 
 const onChangeHandlerNotice = (evt) => {
   switch (evt.target) {
@@ -141,6 +181,9 @@ const onChangeHandlerNotice = (evt) => {
       break;
     case textareaDescriptionFromBody:
       validateLengthDescription();
+      break;
+    case inputFileFromBodyImg:
+      validateLoadPhoto();
       break;
   }
 };
