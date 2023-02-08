@@ -23,6 +23,7 @@ const selectTypeFromBody = document.querySelector("#type");
 const selectRoomsNumberFromBody = document.querySelector("#room_number");
 const selectCapacityFromBody = document.querySelector("#capacity");
 const inputAddressFromBody = document.querySelector("#address");
+const textareaDescriptionFromBody = document.querySelector("#description");
 
 const validateLengthTextTitle = () => {
   const lengthTextTitle = inputTextTitleFromBody.value.length;
@@ -114,8 +115,14 @@ const sortCapacityPerRoomsNumber = () => {
   });
 };
 
-//TODO добавить валидацию на кооринаты регуляркой
-//TODO добавить валидацию на описание
+const validateLengthDescription = () => {
+  const descriptionLength = textareaDescriptionFromBody.value.length;
+  textareaDescriptionFromBody.setCustomValidity(
+    descriptionLength > 10 ? "" : "Описание слишком короткое"
+  );
+  textareaDescriptionFromBody.reportValidity();
+};
+
 //TODO проработать превью фото как у аватара
 
 const onChangeHandlerNotice = (evt) => {
@@ -131,6 +138,9 @@ const onChangeHandlerNotice = (evt) => {
       break;
     case inputAddressFromBody:
       validateCoordinates();
+      break;
+    case textareaDescriptionFromBody:
+      validateLengthDescription();
       break;
   }
 };
