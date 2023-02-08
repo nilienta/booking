@@ -39,12 +39,12 @@ const sortingGuests = (sortedArray, nameFilter, selectValueFilter) => {
   );
 };
 
+const sortingAnyFilter = (arr, nameFilter, selectValueFilter) => {
+  return arr.filter((item) => item.offer[nameFilter] == selectValueFilter);
+};
+
 export const sortingAd = (adList) => {
   let sortedArray = [...adList];
-
-  const sortingAnyFilter = (arr, nameFilter, selectValueFilter) => {
-    return arr.filter((item) => item.offer[nameFilter] == selectValueFilter);
-  };
 
   const sortByAllFilters = () => {
     const selectsFiltersFromBody = Array.from(
@@ -78,8 +78,8 @@ export const sortingAd = (adList) => {
       }
     });
 
-    //  updateMap(sortingFeatures(sortedArray));
     markersList.update(sortingFeatures(sortedArray));
+    //  console.log(sortingFeatures(sortedArray));
   };
 
   sortByAllFilters(adList);

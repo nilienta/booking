@@ -1,10 +1,9 @@
-import runValidateForm from "../js/validate-form.js";
 import uploadAvatar from "../js/upload-avatar.js";
 import { fetchRequest } from "./api.js";
 import markersList from "./edit-marker-list.js";
 import { sortingAd } from "../js/sorting.js";
+import runValidateForm from "../js/validate-form.js";
 
-//TODO переработать порядок вызова функций и импортов
 uploadAvatar();
 runValidateForm();
 
