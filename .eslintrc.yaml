@@ -17,5 +17,4 @@ extends:
   "htmlacademy/vanilla"
 
 quotes: 
-	"error",
 	"single"
