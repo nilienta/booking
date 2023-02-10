@@ -52,26 +52,29 @@ const sortingAd = (adList) => {
     selectsFiltersFromBody.forEach((item) => {
       const nameFilter = item.id.split('-')[1];
       const selectValueFilter = item.value;
-      // TODO попробовать редьюс
       if (selectValueFilter !== AVAILABLE_FILTERS.any) {
-        if (nameFilter === AVAILABLE_FILTERS.price) {
-          sortedArray = sortingPrice(
-            sortedArray,
-            nameFilter,
-            selectValueFilter
-          );
-        } else if (nameFilter === AVAILABLE_FILTERS.guests) {
-          sortedArray = sortingGuests(
-            sortedArray,
-            nameFilter,
-            selectValueFilter
-          );
-        } else {
-          sortedArray = sortingAnyFilter(
-            sortedArray,
-            nameFilter,
-            selectValueFilter
-          );
+        switch (nameFilter) {
+          case AVAILABLE_FILTERS.guests:
+            sortedArray = sortingGuests(
+              sortedArray,
+              nameFilter,
+              selectValueFilter
+            );
+            break;
+          case AVAILABLE_FILTERS.price:
+            sortedArray = sortingPrice(
+              sortedArray,
+              nameFilter,
+              selectValueFilter
+            );
+            break;
+          default:
+            sortedArray = sortingAnyFilter(
+              sortedArray,
+              nameFilter,
+              selectValueFilter
+            );
+            break;
         }
       }
     });
