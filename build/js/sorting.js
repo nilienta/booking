@@ -77,7 +77,6 @@ const sortingAd = (adList) => {
     });
 
     markersList.update(sortingFeatures(sortedArray));
-    //   console.log(sortingFeatures(sortedArray));
   };
 
   sortByAllFilters(adList);
