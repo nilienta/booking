@@ -124,45 +124,44 @@ const validateLengthDescription = () => {
   textareaDescriptionFromBody.reportValidity();
 };
 
-// FIXME теряет имя, либо происходит дублирование картинок
+// FIXME дублирует событие onload
+// FIXME код частично дублирует uploadAvatar
 const validateLoadPhoto = () => {
   const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   const imgPreviewAvatarFromBody = document.querySelector('.ad-form__photo');
   imgPreviewAvatarFromBody.style = 'display: flex;gap: 5px;';
-  //   const countPhoto = Array.from(
-  //     imgPreviewAvatarFromBody.querySelectorAll('img'),
-  //   ).length;
-  //   console.log(countPhoto);
-
   const createImgForPhoto = (fileReader) => {
     const previewPhoto = document.createElement('img');
     previewPhoto.height = '70';
     previewPhoto.src = fileReader.result;
     imgPreviewAvatarFromBody.appendChild(previewPhoto);
   };
+  const addPreviewPhoto = () => {
+    console.log('posle');
+    const countPhoto = Array.from(
+      imgPreviewAvatarFromBody.querySelectorAll('img')
+    ).length;
+    if (countPhoto < 3) {
+      const fileAvatar = inputFileFromBodyImg.files[0];
+      const nameFileAvatar = fileAvatar?.name?.toLowerCase();
+      const isFormatFileCorrect = FILE_TYPES.some((item) =>
+        nameFileAvatar?.endsWith(item)
+      );
 
-  inputFileFromBodyImg.addEventListener('change', () => {
-    const fileAvatar = inputFileFromBodyImg.files[0];
-    const nameFileAvatar = fileAvatar.name.toLowerCase();
-
-    const isFormatFileCorrect = FILE_TYPES.some((item) =>
-      nameFileAvatar.endsWith(item)
-    );
-
-    if (isFormatFileCorrect) {
-      const fileReader = new FileReader();
-
-      fileReader.addEventListener('load', () => {
-        createImgForPhoto(fileReader);
-      });
-      fileReader.readAsDataURL(fileAvatar);
-      fileReader.addEventListener('error', () => {
-        // TODO добавить обработку ошибки
-        //   console.error('Произошла ошибка при чтении файла');
-      });
+      if (isFormatFileCorrect) {
+        const fileReader = new FileReader();
+        fileReader.addEventListener('load', () => {
+          createImgForPhoto(fileReader);
+        });
+        fileReader.readAsDataURL(fileAvatar);
+        fileReader.addEventListener('error', () => {
+          console.error('Произошла ошибка при чтении файла');
+        });
+      }
+      inputFileFromBodyImg.value = '';
     }
-    inputFileFromBodyImg.value = '';
-  });
+  };
+  inputFileFromBodyImg.addEventListener('change', addPreviewPhoto);
 };
 
 const onChangeHandlerNotice = (evt) => {
