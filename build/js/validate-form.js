@@ -16,15 +16,15 @@ const MIN_PRICES = {
   bungalow: 10,
 };
 
-const sectionNoticeFromBody = document.querySelector(".notice");
-const inputTextTitleFromBody = document.querySelector("#title");
-const inputNumberPriceFromBody = document.querySelector("#price");
-const selectTypeFromBody = document.querySelector("#type");
-const selectRoomsNumberFromBody = document.querySelector("#room_number");
-const selectCapacityFromBody = document.querySelector("#capacity");
-const inputAddressFromBody = document.querySelector("#address");
-const textareaDescriptionFromBody = document.querySelector("#description");
-const inputFileFromBodyImg = document.querySelector("#images");
+const sectionNoticeFromBody = document.querySelector('.notice');
+const inputTextTitleFromBody = document.querySelector('#title');
+const inputNumberPriceFromBody = document.querySelector('#price');
+const selectTypeFromBody = document.querySelector('#type');
+const selectRoomsNumberFromBody = document.querySelector('#room_number');
+const selectCapacityFromBody = document.querySelector('#capacity');
+const inputAddressFromBody = document.querySelector('#address');
+const textareaDescriptionFromBody = document.querySelector('#description');
+const inputFileFromBodyImg = document.querySelector('#images');
 
 const validateLengthTextTitle = () => {
   const lengthTextTitle = inputTextTitleFromBody.value.length;
@@ -46,7 +46,7 @@ const validateLengthTextTitle = () => {
   } else if (lengthTextTitle > MAX_TITLE_LENGTH) {
     displayValidityText.manySymbol();
   } else {
-    inputTextTitleFromBody.setCustomValidity("");
+    inputTextTitleFromBody.setCustomValidity('');
   }
   inputTextTitleFromBody.reportValidity();
 };
@@ -72,7 +72,7 @@ const validateValuePrice = () => {
   } else if (valuePrice < minPriceForSelectType) {
     displayValidityText.minPrice();
   } else {
-    inputNumberPriceFromBody.setCustomValidity("");
+    inputNumberPriceFromBody.setCustomValidity('');
   }
   inputNumberPriceFromBody.reportValidity();
 };
@@ -81,16 +81,16 @@ const validateCoordinates = () => {
   const coordinates = inputAddressFromBody.value;
   const regex =
     /^(-?[1-8]?\d(?:\.\d{1,18})?|90(?:\.0{1,18})?),(\s|)(-?(?:1[0-7]|[1-9])?\d(?:\.\d{1,18})?|180(?:\.0{1,18})?)$/;
-  let valid = regex.test(coordinates);
+  const valid = regex.test(coordinates);
   inputAddressFromBody.setCustomValidity(
-    valid ? "" : "Не верный формат координат"
+    valid ? '' : 'Не верный формат координат'
   );
   inputAddressFromBody.reportValidity();
 };
 
 const sortCapacityPerRoomsNumber = () => {
   const optionsFromSelectCapacity =
-    selectCapacityFromBody.querySelectorAll("option");
+    selectCapacityFromBody.querySelectorAll('option');
   const currentRoomsNumber = Number(selectRoomsNumberFromBody.value);
   const possibleCapacities = ROOM_CAPACITIES[currentRoomsNumber];
 
@@ -119,29 +119,29 @@ const sortCapacityPerRoomsNumber = () => {
 const validateLengthDescription = () => {
   const descriptionLength = textareaDescriptionFromBody.value.length;
   textareaDescriptionFromBody.setCustomValidity(
-    descriptionLength > 10 ? "" : "Описание слишком короткое"
+    descriptionLength > 10 ? '' : 'Описание слишком короткое'
   );
   textareaDescriptionFromBody.reportValidity();
 };
 
-//FIXME теряет имя, либо происходит дублирование картинок
+// FIXME теряет имя, либо происходит дублирование картинок
 const validateLoadPhoto = () => {
-  const FILE_TYPES = ["gif", "jpg", "jpeg", "png"];
-  const imgPreviewAvatarFromBody = document.querySelector(".ad-form__photo");
-  imgPreviewAvatarFromBody.style = "display: flex;gap: 5px;";
-  const countPhoto = Array.from(
-    imgPreviewAvatarFromBody.querySelectorAll("img")
-  ).length;
-  console.log(countPhoto);
+  const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+  const imgPreviewAvatarFromBody = document.querySelector('.ad-form__photo');
+  imgPreviewAvatarFromBody.style = 'display: flex;gap: 5px;';
+  //   const countPhoto = Array.from(
+  //     imgPreviewAvatarFromBody.querySelectorAll('img'),
+  //   ).length;
+  //   console.log(countPhoto);
 
   const createImgForPhoto = (fileReader) => {
-    const previewPhoto = document.createElement("img");
-    previewPhoto.height = "70";
+    const previewPhoto = document.createElement('img');
+    previewPhoto.height = '70';
     previewPhoto.src = fileReader.result;
     imgPreviewAvatarFromBody.appendChild(previewPhoto);
   };
 
-  inputFileFromBodyImg.addEventListener("change", () => {
+  inputFileFromBodyImg.addEventListener('change', () => {
     const fileAvatar = inputFileFromBodyImg.files[0];
     const nameFileAvatar = fileAvatar.name.toLowerCase();
 
@@ -152,16 +152,16 @@ const validateLoadPhoto = () => {
     if (isFormatFileCorrect) {
       const fileReader = new FileReader();
 
-      fileReader.addEventListener("load", () => {
+      fileReader.addEventListener('load', () => {
         createImgForPhoto(fileReader);
       });
       fileReader.readAsDataURL(fileAvatar);
-      fileReader.addEventListener("error", () => {
-        console.error("Произошла ошибка при чтении файла");
-        return;
+      fileReader.addEventListener('error', () => {
+        // TODO добавить обработку ошибки
+        //   console.error('Произошла ошибка при чтении файла');
       });
     }
-    inputFileFromBodyImg.value = "";
+    inputFileFromBodyImg.value = '';
   });
 };
 
@@ -185,12 +185,14 @@ const onChangeHandlerNotice = (evt) => {
     case inputFileFromBodyImg:
       validateLoadPhoto();
       break;
+    default:
+      break;
   }
 };
 
 const runValidateForm = () => {
   sortCapacityPerRoomsNumber();
-  sectionNoticeFromBody.addEventListener("input", onChangeHandlerNotice);
+  sectionNoticeFromBody.addEventListener('input', onChangeHandlerNotice);
 };
 
 export default runValidateForm;

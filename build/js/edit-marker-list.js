@@ -1,6 +1,5 @@
-import { map } from "./map";
-import { usualIconMarker } from "./map";
-import createPopupAd from "./supply-element.js";
+import { map, usualIconMarker } from './map';
+import createPopupAd from './supply-element';
 
 const markersList = {
   currentMarkers: [],

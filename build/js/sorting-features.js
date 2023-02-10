@@ -1,8 +1,6 @@
 const sortingFeatures = (sortedArray) => {
-  console.log("params=", sortedArray);
-
   const inputCheckedFromFieldsetFeatures = Array.from(
-    document.querySelectorAll("#housing-features > .map__checkbox:checked")
+    document.querySelectorAll('#housing-features > .map__checkbox:checked')
   );
   const checkedFeatures = inputCheckedFromFieldsetFeatures.reduce(
     (features, item) => {
@@ -19,10 +17,10 @@ const sortingFeatures = (sortedArray) => {
           ad.offer.features.includes(feature)
         );
       }
+      return false;
     });
-  } else {
-    return sortedArray;
   }
+  return sortedArray;
 };
 
 export default sortingFeatures;

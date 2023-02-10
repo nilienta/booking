@@ -1,58 +1,58 @@
-//---------------------------------------------create map------------------------------------------------
+// ---------------------------------------------create map------------------------------------------------
 const COORDINATES_CENTER_MAP = {
-  X: 35.67,
-  Y: 139.76,
+  lat: 35.67,
+  lng: 139.76,
 };
 
 const INITIAL_ZOOM_MAP = 13;
 
-const map = L.map("map-canvas").setView(
+const map = L.map('map-canvas').setView(
   {
-    lat: COORDINATES_CENTER_MAP.X,
-    lng: COORDINATES_CENTER_MAP.Y,
+    lat: COORDINATES_CENTER_MAP.lat,
+    lng: COORDINATES_CENTER_MAP.lng,
   },
   INITIAL_ZOOM_MAP
 );
 
-const layerMap = L.tileLayer(
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  {}
-).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(
+  map
+);
 
 const usualIconMarker = L.icon({
-  iconUrl: "../img/pin.svg",
+  iconUrl: '../img/pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
-//-------------------------------------create main marker on map-----------------------------------------
+// -------------------------------------create main marker on map-----------------------------------------
 const mainIconPin = L.icon({
-  iconUrl: "../img/main-pin.svg",
+  iconUrl: '../img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
 const mainMarkerPin = L.marker(
   {
-    lat: COORDINATES_CENTER_MAP.X,
-    lng: COORDINATES_CENTER_MAP.Y,
+    lat: COORDINATES_CENTER_MAP.lat,
+    lng: COORDINATES_CENTER_MAP.lng,
   },
   {
     draggable: true,
     icon: mainIconPin,
   }
 );
-mainMarkerPin.addTo(map);
-mainMarkerPin.on("moveend", (e) => {
-  getCoordinatesFromMap(e);
-});
 
-const getCoordinatesFromMap = (e) => {
-  const inputAddressFromBody = document.querySelector("#address");
-  inputAddressFromBody.value = e.target
+const getCoordinatesFromMap = (err) => {
+  const inputAddressFromBody = document.querySelector('#address');
+  inputAddressFromBody.value = err.target
     .getLatLng()
     .toString()
-    .replace(/[a-zA-Z()]/g, "");
+    .replace(/[a-zA-Z()]/g, '');
 };
+
+mainMarkerPin.addTo(map);
+mainMarkerPin.on('moveend', (err) => {
+  getCoordinatesFromMap(err);
+});
 
 export { map, usualIconMarker };

@@ -8,18 +8,18 @@
  */
 /******/ (() => {
   // webpackBootstrap
-  /******/ var __webpack_modules__ = {
-    /***/ "./js/main.js":
-      /*!********************!*\
+  /******/ const __webpack_modules__ = {
+    /***/ './js/main.js':
+    /*!********************!*\
   !*** ./js/main.js ***!
   \********************/
-      /***/ () => {
-        eval(
-          'alert("d;lk;dd");\r\n\n\n//# sourceURL=webpack://booking/./js/main.js?'
-        );
+    /***/ () => {
+      eval(
+        'alert("d;lk;dd");\r\n\n\n//# sourceURL=webpack://booking/./js/main.js?',
+      );
 
-        /***/
-      },
+      /***/
+    },
 
     /******/
   };
@@ -28,8 +28,8 @@
   /******/ // startup
   /******/ // Load entry module and return exports
   /******/ // This entry module can't be inlined because the eval devtool is used.
-  /******/ var __webpack_exports__ = {};
-  /******/ __webpack_modules__["./js/main.js"]();
+  /******/ const __webpack_exports__ = {};
+  /******/ __webpack_modules__['./js/main.js']();
   /******/
   /******/
 })();

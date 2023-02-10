@@ -1,5 +1,5 @@
-import markersList from "./edit-marker-list.js";
-import sortingFeatures from "./sorting-features";
+import markersList from './edit-marker-list';
+import sortingFeatures from './sorting-features';
 
 const PRICE_RANGE = {
   low: {
@@ -15,8 +15,8 @@ const PRICE_RANGE = {
     MAX: 1000000,
   },
 };
-const GUESTS_AMOUNT = { one: "1", two: "2", moreTwo: "0" };
-const AVAILABLE_FILTERS = { any: "any", price: "price", guests: "guests" };
+const GUESTS_AMOUNT = { one: '1', two: '2', moreTwo: '0' };
+const AVAILABLE_FILTERS = { any: 'any', price: 'price', guests: 'guests' };
 
 const sortingPrice = (sortedArray, nameFilter, selectValueFilter) => {
   const priceRangeForSelectFilter = PRICE_RANGE[selectValueFilter];
@@ -38,22 +38,21 @@ const sortingGuests = (sortedArray, nameFilter, selectValueFilter) => {
   );
 };
 
-const sortingAnyFilter = (arr, nameFilter, selectValueFilter) => {
-  return arr.filter((item) => item.offer[nameFilter] == selectValueFilter);
-};
+const sortingAnyFilter = (arr, nameFilter, selectValueFilter) =>
+  arr.filter((item) => item.offer[nameFilter] === selectValueFilter);
 
-export const sortingAd = (adList) => {
+const sortingAd = (adList) => {
   let sortedArray = [...adList];
 
   const sortByAllFilters = () => {
     const selectsFiltersFromBody = Array.from(
-      document.querySelectorAll(".map__filter")
+      document.querySelectorAll('.map__filter')
     );
 
     selectsFiltersFromBody.forEach((item) => {
-      const nameFilter = item.id.split("-")[1];
+      const nameFilter = item.id.split('-')[1];
       const selectValueFilter = item.value;
-      //TODO попробовать редьюс
+      // TODO попробовать редьюс
       if (selectValueFilter !== AVAILABLE_FILTERS.any) {
         if (nameFilter === AVAILABLE_FILTERS.price) {
           sortedArray = sortingPrice(
@@ -78,8 +77,10 @@ export const sortingAd = (adList) => {
     });
 
     markersList.update(sortingFeatures(sortedArray));
-    //  console.log(sortingFeatures(sortedArray));
+    //   console.log(sortingFeatures(sortedArray));
   };
 
   sortByAllFilters(adList);
 };
+
+export default sortingAd;
