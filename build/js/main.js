@@ -4,7 +4,11 @@ import sortingAd from './sorting';
 import runValidateForm from './validate-form';
 import { fetchRequest } from './api';
 
-uploadAvatar();
+const inputFileAvatarFromBody = document.querySelector('#avatar');
+inputFileAvatarFromBody.addEventListener('change', (evt) => {
+  uploadAvatar(evt);
+});
+
 runValidateForm();
 
 const BOOKING_URL_DATA =

@@ -5,8 +5,8 @@ const IMG_PARAMS = {
   OBJECT_FIT: 'cover',
 };
 
-// FIXME дублирует событие onload
 // FIXME код частично дублирует uploadAvatar
+// у файла создается img, у аватара изменяется. в файлах есть учёт количества фото. в фото бокс img создается. у аватара он уже есть с заданами размерами
 const validateLoadPhoto = (evt) => {
   const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
