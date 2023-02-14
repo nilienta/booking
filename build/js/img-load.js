@@ -5,50 +5,63 @@ const IMG_PARAMS = {
   OBJECT_FIT: 'cover',
 };
 
-const inputFileFromBodyImg = document.querySelector('#images');
 // FIXME дублирует событие onload
 // FIXME код частично дублирует uploadAvatar
-const validateLoadPhoto = () => {
+const validateLoadPhoto = (evt) => {
   const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
-  const divPreviewAvatarFromBody = document.querySelector('.ad-form__photo');
-  divPreviewAvatarFromBody.style = 'display: flex;gap: 5px;';
+  const divPhotoContainerFromBody = document.querySelector(
+    '.ad-form__photo-container'
+  );
 
   const createImgForPhoto = (fileReader) => {
+    const divEmptyFromBody = document.querySelector('.ad-form__photo--empty');
+    divEmptyFromBody.style.display = 'none';
+
+    const divPreviewPhoto = document.createElement('div');
+    divPreviewPhoto.classList.add('ad-form__photo');
+
     const imgPreviewPhoto = document.createElement('img');
     imgPreviewPhoto.style.width = IMG_PARAMS.WIDTH;
     imgPreviewPhoto.style.height = IMG_PARAMS.HEIGHT;
     imgPreviewPhoto.style.borderRadius = IMG_PARAMS.BORDER_RADIUS;
     imgPreviewPhoto.style.objectFit = IMG_PARAMS.OBJECT_FIT;
     imgPreviewPhoto.src = fileReader.result;
-    divPreviewAvatarFromBody.appendChild(imgPreviewPhoto);
+    divPreviewPhoto.appendChild(imgPreviewPhoto);
+    divPhotoContainerFromBody.appendChild(divPreviewPhoto);
   };
-  const addPreviewPhoto = () => {
-    console.log('posle');
-    const countPhoto = Array.from(
-      divPreviewAvatarFromBody.querySelectorAll('img')
-    ).length;
-    if (countPhoto < 3) {
-      const fileAvatar = inputFileFromBodyImg.files[0];
-      const nameFileAvatar = fileAvatar?.name?.toLowerCase();
-      const isFormatFileCorrect = FILE_TYPES.some((item) =>
-        nameFileAvatar?.endsWith(item)
-      );
 
-      if (isFormatFileCorrect) {
-        const fileReader = new FileReader();
-        fileReader.addEventListener('load', () => {
-          createImgForPhoto(fileReader);
-        });
-        fileReader.readAsDataURL(fileAvatar);
-        fileReader.addEventListener('error', () => {
-          console.error('Произошла ошибка при чтении файла');
-        });
-      }
-      inputFileFromBodyImg.value = '';
+  const countPhoto = Array.from(
+    divPhotoContainerFromBody.querySelectorAll('img')
+  ).length;
+
+  if (countPhoto < 6) {
+    const fileAvatar = evt.target.files[0];
+
+    const nameFileAvatar = fileAvatar?.name?.toLowerCase();
+    const isFormatFileCorrect = FILE_TYPES.some((item) =>
+      nameFileAvatar?.endsWith(item)
+    );
+
+    if (isFormatFileCorrect) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(fileAvatar);
+      fileReader.addEventListener('load', () => {
+        createImgForPhoto(fileReader);
+      });
+      fileReader.addEventListener('error', () => {
+        console.error('Произошла ошибка при чтении файла');
+      });
+    } else {
+      evt.target.setCustomValidity('Расширение файла не корректно');
+      evt.target.reportValidity();
     }
-  };
-  inputFileFromBodyImg.addEventListener('change', addPreviewPhoto);
+  } else {
+    evt.target.setCustomValidity(
+      'Количество загружаемых фото не может превышать 6 штук'
+    );
+    evt.target.reportValidity();
+  }
 };
 
 export default validateLoadPhoto;

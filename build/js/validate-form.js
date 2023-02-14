@@ -144,7 +144,7 @@ const onChangeHandlerNotice = (evt) => {
       validateLengthDescription();
       break;
     case inputFileFromBodyImg:
-      validateLoadPhoto();
+      validateLoadPhoto(evt);
       break;
     default:
       break;
