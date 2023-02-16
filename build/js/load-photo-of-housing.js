@@ -1,5 +1,6 @@
 import loadImg from './load-img';
 
+//TODO добавить множественную подгрузку фото <!-- multiple="multiple"  -->
 const validateLoadPhoto = (evt) => {
   const IMG_PARAMS = {
     WIDTH: '70px',
