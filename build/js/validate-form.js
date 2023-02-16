@@ -1,4 +1,4 @@
-import validateLoadPhoto from './img-load';
+import validateLoadPhoto from './load-photo-of-housing';
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;

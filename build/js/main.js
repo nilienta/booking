@@ -1,4 +1,4 @@
-import uploadAvatar from './upload-avatar';
+import loadAvatar from './load-avatar';
 import markersList from './edit-marker-list';
 import sortingAd from './sorting';
 import runValidateForm from './validate-form';
@@ -6,7 +6,7 @@ import { fetchRequest } from './api';
 
 const inputFileAvatarFromBody = document.querySelector('#avatar');
 inputFileAvatarFromBody.addEventListener('change', (evt) => {
-  uploadAvatar(evt);
+  loadAvatar(evt);
 });
 
 runValidateForm();
