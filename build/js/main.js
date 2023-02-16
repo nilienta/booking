@@ -12,7 +12,7 @@ inputFileAvatarFromBody.addEventListener('change', (evt) => {
 runValidateForm();
 
 const BOOKING_URL_DATA =
-  'https://28.javascript.pages.academy/keksobooking/data';
+  'https://23.javascript.pages.academy/keksobooking/data';
 
 let adList = [];
 fetchRequest(BOOKING_URL_DATA)
