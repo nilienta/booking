@@ -3,6 +3,7 @@ import markersList from './edit-marker-list';
 import sortingAd from './sorting';
 import runValidateForm from './validate-form';
 import { fetchRequest } from './api';
+import showToast from './toast';
 
 const inputFileAvatarFromBody = document.querySelector('#avatar');
 inputFileAvatarFromBody.addEventListener('change', (evt) => {
@@ -23,7 +24,7 @@ fetchRequest(BOOKING_URL_DATA)
     }
   })
   .catch((error) => {
-    console.error('Произошла ошибка!', error.message);
+    showToast('Произошла ошибка!', error.message);
   });
 
 const formFiltersFromBody = document.querySelector('.map__filters');

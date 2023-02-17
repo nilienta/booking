@@ -4,7 +4,8 @@
 		"es2021": true
 	},
 	"globals": {
-		"L": "readonly"
+		"L": "readonly",
+		"Toastify": "readonly"
 	},
 	"extends": [
 		"htmlacademy/vanilla",

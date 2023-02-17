@@ -1,3 +1,5 @@
+import showToast from './toast';
+
 const loadImg = (inputFile, runAfterLoadFile) => {
   const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   const fileAvatar = inputFile.files[0];
@@ -12,11 +14,10 @@ const loadImg = (inputFile, runAfterLoadFile) => {
       runAfterLoadFile(fileReader);
     });
     fileReader.addEventListener('error', () => {
-      console.error('Произошла ошибка при чтении файла');
+      showToast('Произошла ошибка при чтении файла');
     });
   } else {
-    inputFile.setCustomValidity('Расширение файла не корректно');
-    inputFile.reportValidity();
+    showToast('Расширение файла не корректно');
   }
 };
 
