@@ -97,13 +97,14 @@ const sortCapacityPerRoomsNumber = () => {
   const possibleCapacities = ROOM_CAPACITIES[currentRoomsNumber];
 
   optionsFromSelectCapacity.forEach((option) => {
-    option.enable = false;
+    option.disabled = true;
+    console.log(option);
   });
 
   possibleCapacities.forEach((capacity) => {
     optionsFromSelectCapacity.forEach((option) => {
       if (Number(option.value) === capacity) {
-        option.enable = true;
+        option.disabled = false;
       }
     });
 
