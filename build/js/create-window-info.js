@@ -1,9 +1,11 @@
+// TODO вынести общие функции в отдельный файл
+const body = document.querySelector('body');
+
 const messageDeleteHandler = (messageElement) => {
   messageElement.remove();
 };
 const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 const onPopupEscKeydown = (evt) => {
-  const body = document.querySelector('body');
   if (isEscEvent(evt)) {
     messageDeleteHandler();
     body.removeEventListener('keydown', onPopupEscKeydown);
@@ -16,8 +18,7 @@ const createWindowError = () => {
     .content.querySelector('.error')
     .cloneNode(true);
 
-  const body = document.querySelector('body');
-  body.prepend(divErrorFromBody);
+  body.appendChild(divErrorFromBody);
 
   body.addEventListener('click', messageDeleteHandler(divErrorFromBody), {
     once: true,
@@ -32,5 +33,17 @@ const createWindowError = () => {
     }
   );
 };
+const createWindowSuccess = () => {
+  const divSuccessFromBody = document
+    .querySelector('#success')
+    .content.querySelector('.success')
+    .cloneNode(true);
 
-export default createWindowError;
+  body.appendChild(divSuccessFromBody);
+  body.addEventListener('click', messageDeleteHandler(divSuccessFromBody), {
+    once: true,
+  });
+  body.addEventListener('keydown', onPopupEscKeydown);
+};
+
+export { createWindowError, createWindowSuccess };
