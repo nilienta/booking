@@ -4,12 +4,13 @@ import sortingAd from './sorting';
 import runValidateForm from './validate-form';
 import { fetchRequest } from './api';
 import showToast from './toast';
+import { onFormSubmit } from './submit-form';
 
 const inputFileAvatarFromBody = document.querySelector('#avatar');
 inputFileAvatarFromBody.addEventListener('change', (evt) => {
   loadAvatar(evt);
 });
-
+onFormSubmit();
 runValidateForm();
 
 const BOOKING_URL_DATA =

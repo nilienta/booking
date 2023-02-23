@@ -28,7 +28,7 @@ const onSuccess = () => {
   createWindowSuccess();
 };
 
-export const SS = () => {
+export const onFormSubmit = () => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     sendData(
