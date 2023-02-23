@@ -1,21 +1,19 @@
 const body = document.querySelector('body');
 
-const deleteModalMessage = () => {
+const removeElementMessage = () => {
   const divSuccess = document.querySelector('.success');
   const divError = document.querySelector('.error');
   divSuccess?.remove();
   divError?.remove();
-  body.removeEventListener('click', deleteModalMessage);
-  // FIXME убрать взаимосвзяь функций
-  body.removeEventListener('keydown', onPopupEscKeydown);
 };
 
-const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
-const onPopupEscKeydown = (evt) => {
-  if (isEscEvent(evt)) {
-    deleteModalMessage();
-  }
+const deleteModalMessage = (evt) => {
+  const isEscEvent = () => evt.key === 'Escape' || evt.key === 'Esc';
+  if (isEscEvent || evt.type === 'click') removeElementMessage();
+  body.removeEventListener('click', deleteModalMessage);
+  body.removeEventListener('keydown', deleteModalMessage);
 };
+
 // FIXME дублирование кода createWindowError и createWindowSuccess
 const createWindowError = (textError) => {
   const divErrorFromBody = document
@@ -27,7 +25,7 @@ const createWindowError = (textError) => {
   body.appendChild(divErrorFromBody);
 
   body.addEventListener('click', deleteModalMessage);
-  body.addEventListener('keydown', onPopupEscKeydown);
+  body.addEventListener('keydown', deleteModalMessage);
   const ButtonCloseError = divErrorFromBody.querySelector('.error__button');
   ButtonCloseError.addEventListener('click', deleteModalMessage);
 };
@@ -40,7 +38,7 @@ const createWindowSuccess = () => {
   body.appendChild(divSuccessFromBody);
 
   body.addEventListener('click', deleteModalMessage);
-  body.addEventListener('keydown', onPopupEscKeydown);
+  body.addEventListener('keydown', deleteModalMessage);
 };
 
 export { createWindowError, createWindowSuccess };
