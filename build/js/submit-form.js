@@ -1,5 +1,7 @@
 import { createWindowError, createWindowSuccess } from './create-window-info';
+import { sendData } from './api';
 
+const BOOKING_URL_SEND_AD = 'https://23.javascript.pages.academy/keksobooking';
 const adForm = document.querySelector('.ad-form');
 
 const deleteDivPhoto = () => {
@@ -16,37 +18,24 @@ const deleteDivPhoto = () => {
   const divEmptyFromBody = document.querySelector('.ad-form__photo--empty');
   divEmptyFromBody.style.display = '';
 };
+
 const resetForm = () => {
   deleteDivPhoto();
   adForm.reset();
 };
-const sendData = async (onSuccess, onFail, data) => {
-  try {
-    const response = await fetch(
-      'https://23.javascript.pages.academy/keksobooking',
-      {
-        method: 'POST',
-        body: data,
-      }
-    );
-
-    if (response.ok) {
-      resetForm();
-      onSuccess();
-    } else {
-      onFail(response.status);
-      console.log(response);
-      console.log('response.NEok');
-    }
-  } catch (error) {
-    onFail(error.message);
-    console.log('catch (error)');
-  }
+const onSuccess = () => {
+  resetForm();
+  createWindowSuccess();
 };
 
 export const SS = () => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    sendData(createWindowSuccess, createWindowError, new FormData(evt.target));
+    sendData(
+      BOOKING_URL_SEND_AD,
+      onSuccess,
+      createWindowError,
+      new FormData(evt.target)
+    );
   });
 };
