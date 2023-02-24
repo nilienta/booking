@@ -1,4 +1,4 @@
-import { createWindowError, createWindowSuccess } from './create-window-info';
+import { createModalError, createModalSuccess } from './create-modal-info';
 import { sendData } from './api';
 
 const BOOKING_URL_SEND_AD = 'https://23.javascript.pages.academy/keksobooking';
@@ -25,7 +25,7 @@ const resetForm = () => {
 };
 const onSuccess = () => {
   resetForm();
-  createWindowSuccess();
+  createModalSuccess();
 };
 
 export const onFormSubmit = () => {
@@ -34,7 +34,7 @@ export const onFormSubmit = () => {
     sendData(
       BOOKING_URL_SEND_AD,
       onSuccess,
-      createWindowError,
+      createModalError,
       new FormData(evt.target)
     );
   });
