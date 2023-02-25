@@ -1,5 +1,5 @@
 import loadImg from './load-img.js';
-import setImgPreviewStyles from './set-style-img.js';
+import { STYLE_IMG_PARAMS } from '../constants.js';
 
 const loadAvatar = (evt) => {
   const inputFile = evt.target;
@@ -7,7 +7,7 @@ const loadAvatar = (evt) => {
   const imgPreviewAvatarFromBody = document
     .querySelector('#avatar-preview')
     .querySelector('img');
-  setImgPreviewStyles(imgPreviewAvatarFromBody);
+  Object.assign(imgPreviewAvatarFromBody.style, STYLE_IMG_PARAMS);
 
   const changeAvatar = (fileReader) => {
     imgPreviewAvatarFromBody.src = fileReader.result;

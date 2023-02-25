@@ -1,6 +1,5 @@
 import loadImg from './load-img.js';
-import setImgPreviewStyles from './set-style-img.js';
-import { COUNT_PREVIEW_PHOTO } from '../constants.js';
+import { COUNT_PREVIEW_PHOTO, STYLE_IMG_PARAMS } from '../constants.js';
 
 //TODO добавить множественную подгрузку фото <!-- multiple="multiple"  -->
 const validateLoadPhoto = (evt) => {
@@ -18,7 +17,7 @@ const validateLoadPhoto = (evt) => {
     divPreviewPhoto.classList.add('ad-form__photo');
 
     const imgPreviewPhoto = document.createElement('img');
-    setImgPreviewStyles(imgPreviewPhoto);
+    Object.assign(imgPreviewPhoto.style, STYLE_IMG_PARAMS);
 
     imgPreviewPhoto.src = fileReader.result;
     divPreviewPhoto.appendChild(imgPreviewPhoto);
