@@ -1,14 +1,9 @@
-const IMG_PARAMS = {
-  WIDTH: '70px',
-  HEIGHT: '70px',
-  BORDER_RADIUS: '5px',
-  OBJECT_FIT: 'cover',
-};
+import { STYLE_IMG_PARAMS } from '../constants.js';
 
 const setImgPreviewStyles = (img) => {
-  img.style.width = IMG_PARAMS.WIDTH;
-  img.style.height = IMG_PARAMS.HEIGHT;
-  img.style.borderRadius = IMG_PARAMS.BORDER_RADIUS;
-  img.style.objectFit = IMG_PARAMS.OBJECT_FIT;
+  img.style.width = STYLE_IMG_PARAMS.WIDTH;
+  img.style.height = STYLE_IMG_PARAMS.HEIGHT;
+  img.style.borderRadius = STYLE_IMG_PARAMS.BORDER_RADIUS;
+  img.style.objectFit = STYLE_IMG_PARAMS.OBJECT_FIT;
 };
 export default setImgPreviewStyles;

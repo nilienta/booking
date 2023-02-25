@@ -1,13 +1,6 @@
-const COORDINATES_CENTER_MAP = {
-  lat: 35.67,
-  lng: 139.76,
-};
+import { COORDINATES_CENTER_MAP, ICON_SIZE } from '../constants.js';
 
-const mainIconPin = L.icon({
-  iconUrl: '../img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
-});
+const mainIconPin = L.icon({ ...ICON_SIZE, iconUrl: '../img/main-pin.svg' });
 
 const mainMarkerPin = L.marker(
   {

@@ -1,5 +1,6 @@
 import loadImg from './load-img.js';
 import setImgPreviewStyles from './set-style-img.js';
+import { COUNT_PREVIEW_PHOTO } from '../constants.js';
 
 //TODO добавить множественную подгрузку фото <!-- multiple="multiple"  -->
 const validateLoadPhoto = (evt) => {
@@ -28,7 +29,7 @@ const validateLoadPhoto = (evt) => {
     divPhotoContainerFromBody.querySelectorAll('img')
   ).length;
 
-  if (countPhoto < 6) {
+  if (countPhoto < COUNT_PREVIEW_PHOTO) {
     loadImg(inputFile, createImgForPhoto);
   } else {
     inputFile.setCustomValidity(

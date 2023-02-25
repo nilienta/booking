@@ -1,22 +1,6 @@
 import markersList from './edit-marker-list.js';
 import sortingFeatures from './sorting-features.js';
-
-const PRICE_RANGE = {
-  low: {
-    MIN: 0,
-    MAX: 10000,
-  },
-  middle: {
-    MIN: 10001,
-    MAX: 50000,
-  },
-  high: {
-    MIN: 50001,
-    MAX: 1000000,
-  },
-};
-const GUESTS_AMOUNT = { one: '1', two: '2', moreTwo: '0' };
-const AVAILABLE_FILTERS = { any: 'any', price: 'price', guests: 'guests' };
+import { PRICE_RANGE, GUESTS_AMOUNT, AVAILABLE_FILTERS } from '../constants.js';
 
 const sortingPrice = (sortedArray, nameFilter, selectValueFilter) => {
   const priceRangeForSelectFilter = PRICE_RANGE[selectValueFilter];

@@ -1,9 +1,4 @@
-const COORDINATES_CENTER_MAP = {
-  lat: 35.67,
-  lng: 139.76,
-};
-
-const INITIAL_ZOOM_MAP = 13;
+import { COORDINATES_CENTER_MAP, INITIAL_ZOOM_MAP } from '../constants.js';
 
 const map = L.map('map-canvas').setView(
   {

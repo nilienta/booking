@@ -1,10 +1,10 @@
+import { POSSIBLE_FILE_TYPES_IMG } from '../constants.js';
 import showToast from '../toast.js';
 
 const loadImg = (inputFile, runAfterLoadFile) => {
-  const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   const fileAvatar = inputFile.files[0];
   const nameFileAvatar = fileAvatar?.name?.toLowerCase();
-  const isFormatFileCorrect = FILE_TYPES.some((item) =>
+  const isFormatFileCorrect = POSSIBLE_FILE_TYPES_IMG.some((item) =>
     nameFileAvatar?.endsWith(item)
   );
   if (isFormatFileCorrect) {

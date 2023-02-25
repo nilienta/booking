@@ -1,11 +1,8 @@
 import mainMarkerPin from './create-main-marker.js';
 import map from './create-map.js';
+import { ICON_SIZE } from '../constants.js';
 
-const usualIconMarker = L.icon({
-  iconUrl: '../img/pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
-});
+const usualIconMarker = L.icon({ ...ICON_SIZE, iconUrl: '../img/pin.svg' });
 
 const getCoordinatesFromMap = (err) => {
   const inputAddressFromBody = document.querySelector('#address');

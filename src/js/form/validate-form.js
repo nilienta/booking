@@ -1,22 +1,11 @@
 import validateLoadPhoto from '../loadImg/load-photo-of-housing.js';
-
-const MIN_TITLE_LENGTH = 30;
-const MAX_TITLE_LENGTH = 100;
-const MAX_PRICE_VALUE = 1000000;
-
-const ROOM_CAPACITIES = {
-  1: [1],
-  2: [1, 2],
-  3: [1, 2, 3],
-  100: [0],
-};
-
-const MIN_PRICES = {
-  palace: 10000,
-  flat: 1000,
-  house: 5000,
-  bungalow: 10,
-};
+import {
+  MIN_TITLE_LENGTH,
+  MAX_TITLE_LENGTH,
+  MAX_PRICE_VALUE,
+  ROOM_CAPACITIES,
+  MIN_PRICES,
+} from '../constants.js';
 
 const sectionNoticeFromBody = document.querySelector('.notice');
 const inputTextTitleFromBody = document.querySelector('#title');

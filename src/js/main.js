@@ -4,6 +4,7 @@ import sortingAd from './map/sorting.js';
 import runValidateForm from './form/validate-form.js';
 import { onFormSubmit } from './form/submit-form.js';
 import { fetchRequest } from './api.js';
+import { BOOKING_URL_DATA } from './constants.js';
 
 const inputFileAvatarFromBody = document.querySelector('#avatar');
 inputFileAvatarFromBody.addEventListener('change', (evt) => {
@@ -12,9 +13,6 @@ inputFileAvatarFromBody.addEventListener('change', (evt) => {
 
 onFormSubmit();
 runValidateForm();
-
-const BOOKING_URL_DATA =
-  'https://23.javascript.pages.academy/keksobooking/data';
 
 const getAdList = async () => {
   const adList = await fetchRequest(BOOKING_URL_DATA);
