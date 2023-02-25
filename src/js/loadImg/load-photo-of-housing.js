@@ -1,14 +1,8 @@
 import loadImg from './load-img.js';
+import setImgPreviewStyles from './set-style-img.js';
 
 //TODO добавить множественную подгрузку фото <!-- multiple="multiple"  -->
 const validateLoadPhoto = (evt) => {
-  const IMG_PARAMS = {
-    WIDTH: '70px',
-    HEIGHT: '70px',
-    BORDER_RADIUS: '5px',
-    OBJECT_FIT: 'cover',
-  };
-
   const inputFile = evt.target;
 
   const divPhotoContainerFromBody = document.querySelector(
@@ -23,10 +17,8 @@ const validateLoadPhoto = (evt) => {
     divPreviewPhoto.classList.add('ad-form__photo');
 
     const imgPreviewPhoto = document.createElement('img');
-    imgPreviewPhoto.style.width = IMG_PARAMS.WIDTH;
-    imgPreviewPhoto.style.height = IMG_PARAMS.HEIGHT;
-    imgPreviewPhoto.style.borderRadius = IMG_PARAMS.BORDER_RADIUS;
-    imgPreviewPhoto.style.objectFit = IMG_PARAMS.OBJECT_FIT;
+    setImgPreviewStyles(imgPreviewPhoto);
+
     imgPreviewPhoto.src = fileReader.result;
     divPreviewPhoto.appendChild(imgPreviewPhoto);
     divPhotoContainerFromBody.appendChild(divPreviewPhoto);
