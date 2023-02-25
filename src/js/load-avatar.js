@@ -1,4 +1,4 @@
-import loadImg from './load-img';
+import loadImg from './load-img.js';
 
 const loadAvatar = (evt) => {
   const IMG_PARAMS = {

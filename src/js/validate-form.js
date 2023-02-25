@@ -1,4 +1,4 @@
-import validateLoadPhoto from './load-photo-of-housing';
+import validateLoadPhoto from './load-photo-of-housing.js';
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -98,7 +98,6 @@ const sortCapacityPerRoomsNumber = () => {
 
   optionsFromSelectCapacity.forEach((option) => {
     option.disabled = true;
-    console.log(option);
   });
 
   possibleCapacities.forEach((capacity) => {

@@ -1,4 +1,4 @@
-import loadImg from './load-img';
+import loadImg from './load-img.js';
 
 //TODO добавить множественную подгрузку фото <!-- multiple="multiple"  -->
 const validateLoadPhoto = (evt) => {

@@ -1,5 +1,5 @@
-import markersList from './edit-marker-list';
-import sortingFeatures from './sorting-features';
+import markersList from './edit-marker-list.js';
+import sortingFeatures from './sorting-features.js';
 
 const PRICE_RANGE = {
   low: {

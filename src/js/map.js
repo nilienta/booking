@@ -1,5 +1,5 @@
-import mainMarkerPin from './create-main-marker';
-import map from './create-map';
+import mainMarkerPin from './create-main-marker.js';
+import map from './create-map.js';
 
 const usualIconMarker = L.icon({
   iconUrl: '../img/pin.svg',

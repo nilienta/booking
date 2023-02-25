@@ -1,3 +1,6 @@
+# production
+/build
+
 .DS_Store
 .idea
 *.ai
@@ -9,4 +12,3 @@ node_modules/
 npm-debug.log*
 Thumbs.db
 .vscode/
-del.js

@@ -1,10 +1,10 @@
-import loadAvatar from './load-avatar';
-import markersList from './edit-marker-list';
-import sortingAd from './sorting';
-import runValidateForm from './validate-form';
-import { fetchRequest } from './api';
-import showToast from './toast';
-import { onFormSubmit } from './submit-form';
+import loadAvatar from './load-avatar.js';
+import markersList from './edit-marker-list.js';
+import sortingAd from './sorting.js';
+import runValidateForm from './validate-form.js';
+import { fetchRequest } from './api.js';
+import showToast from './toast.js';
+import { onFormSubmit } from './submit-form.js';
 
 const inputFileAvatarFromBody = document.querySelector('#avatar');
 inputFileAvatarFromBody.addEventListener('change', (evt) => {

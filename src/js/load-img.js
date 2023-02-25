@@ -1,4 +1,4 @@
-import showToast from './toast';
+import showToast from './toast.js';
 
 const loadImg = (inputFile, runAfterLoadFile) => {
   const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
