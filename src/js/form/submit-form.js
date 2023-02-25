@@ -1,5 +1,5 @@
-import { createModalError, createModalSuccess } from './create-modal-info.js';
-import { sendData } from './api.js';
+import { createModalError, createModalSuccess } from '../create-modal-info.js';
+import { sendData } from '../api.js';
 
 const BOOKING_URL_SEND_AD = 'https://23.javascript.pages.academy/keksobooking';
 const adForm = document.querySelector('.ad-form');
