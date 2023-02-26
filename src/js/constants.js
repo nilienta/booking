@@ -7,10 +7,10 @@ export const BOOKING_URL_SEND_AD =
 export const POSSIBLE_FILE_TYPES_IMG = ['gif', 'jpg', 'jpeg', 'png'];
 
 export const STYLE_IMG_PARAMS = {
-  WIDTH: '70px',
-  HEIGHT: '70px',
-  BORDER_RADIUS: '5px',
-  OBJECT_FIT: 'cover',
+  width: '70px',
+  height: '70px',
+  borderRadius: '5px',
+  objectFit: 'cover',
 };
 
 export const COUNT_PREVIEW_PHOTO = 6;
