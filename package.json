@@ -19,7 +19,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve",
+    "start": "webpack serve --open",
     "test": "eslint js/"
   },
   "engines": {
