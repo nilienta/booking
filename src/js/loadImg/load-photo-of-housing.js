@@ -1,6 +1,24 @@
 import loadImg from './load-img.js';
 import { COUNT_PREVIEW_PHOTO, STYLE_IMG_PARAMS } from '../constants.js';
 
+const createImgForPhoto = (fileReader) => {
+  const divEmptyFromBody = document.querySelector('.ad-form__photo--empty');
+  divEmptyFromBody.style.display = 'none';
+
+  const imgPreviewPhoto = document.createElement('img');
+  Object.assign(imgPreviewPhoto.style, STYLE_IMG_PARAMS);
+  imgPreviewPhoto.src = fileReader.result;
+
+  const divPreviewPhoto = document.createElement('div');
+  divPreviewPhoto.classList.add('ad-form__photo');
+  divPreviewPhoto.appendChild(imgPreviewPhoto);
+
+  const divPhotoContainerFromBody = document.querySelector(
+    '.ad-form__photo-container'
+  );
+  divPhotoContainerFromBody.appendChild(divPreviewPhoto);
+};
+
 //TODO добавить множественную подгрузку фото <!-- multiple="multiple"  -->
 const validateLoadPhoto = (evt) => {
   const inputFile = evt.target;
@@ -8,22 +26,6 @@ const validateLoadPhoto = (evt) => {
   const divPhotoContainerFromBody = document.querySelector(
     '.ad-form__photo-container'
   );
-
-  const createImgForPhoto = (fileReader) => {
-    const divEmptyFromBody = document.querySelector('.ad-form__photo--empty');
-    divEmptyFromBody.style.display = 'none';
-
-    const divPreviewPhoto = document.createElement('div');
-    divPreviewPhoto.classList.add('ad-form__photo');
-
-    const imgPreviewPhoto = document.createElement('img');
-    Object.assign(imgPreviewPhoto.style, STYLE_IMG_PARAMS);
-
-    imgPreviewPhoto.src = fileReader.result;
-    divPreviewPhoto.appendChild(imgPreviewPhoto);
-    divPhotoContainerFromBody.appendChild(divPreviewPhoto);
-  };
-
   const countPhoto = Array.from(
     divPhotoContainerFromBody.querySelectorAll('img')
   ).length;
