@@ -1,14 +1,7 @@
 const sortingFeatures = (sortedArray) => {
-  const inputCheckedFromFieldsetFeatures = Array.from(
+  const checkedFeatures = Array.from(
     document.querySelectorAll('#housing-features > .map__checkbox:checked')
-  );
-  const checkedFeatures = inputCheckedFromFieldsetFeatures.reduce(
-    (features, item) => {
-      features.push(item.value);
-      return features;
-    },
-    []
-  );
+  ).map((checkbox) => checkbox.value);
 
   if (checkedFeatures.length > 0) {
     return sortedArray.filter((ad) => {
