@@ -1,13 +1,13 @@
 import loadImg from './load-img.js';
 import { COUNT_PREVIEW_PHOTO, STYLE_IMG_PARAMS } from '../constants.js';
 
-const createImgForPhoto = (fileReader) => {
+const createImgForPhoto = (photoSrc) => {
   const divEmptyFromBody = document.querySelector('.ad-form__photo--empty');
   divEmptyFromBody.style.display = 'none';
 
   const imgPreviewPhoto = document.createElement('img');
   Object.assign(imgPreviewPhoto.style, STYLE_IMG_PARAMS);
-  imgPreviewPhoto.src = fileReader.result;
+  imgPreviewPhoto.src = photoSrc;
 
   const divPreviewPhoto = document.createElement('div');
   divPreviewPhoto.classList.add('ad-form__photo');
@@ -31,7 +31,7 @@ const validateLoadPhoto = (evt) => {
   ).length;
 
   if (countPhoto < COUNT_PREVIEW_PHOTO) {
-    loadImg(inputFile, createImgForPhoto);
+    loadImg(inputFile).then((photoSrc) => createImgForPhoto(photoSrc));
   } else {
     inputFile.setCustomValidity(
       'Количество загружаемых фото не может превышать 6 штук'

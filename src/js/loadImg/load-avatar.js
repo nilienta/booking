@@ -9,11 +9,10 @@ const loadAvatar = (evt) => {
     .querySelector('img');
   Object.assign(imgPreviewAvatarFromBody.style, STYLE_IMG_PARAMS);
 
-  const changeAvatar = (fileReader) => {
-    imgPreviewAvatarFromBody.src = fileReader.result;
+  const changeAvatar = (base64URL) => {
+    imgPreviewAvatarFromBody.src = base64URL;
   };
-
-  loadImg(inputFile, changeAvatar);
+  loadImg(inputFile).then((avatarSrc) => changeAvatar(avatarSrc));
 };
 
 export default loadAvatar;

@@ -11,6 +11,7 @@ export const fetchRequest = async (url) => {
     showToast('Произошла ошибка!', err.message);
   }
 };
+
 export const sendData = async (URL, onSuccess, onFail, data) => {
   try {
     const response = await fetch(URL, {
