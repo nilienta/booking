@@ -3,6 +3,9 @@ const sortingFeatures = (sortedArray) => {
     document.querySelectorAll('#housing-features > .map__checkbox:checked')
   ).map((checkbox) => checkbox.value);
 
+  if (checkedFeatures.length === 0) {
+    return sortedArray;
+  }
   if (checkedFeatures.length > 0) {
     return sortedArray.filter((ad) => {
       if (ad?.offer?.features) {
