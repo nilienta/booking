@@ -7,16 +7,10 @@ const sortingFeatures = (sortedArray) => {
     return sortedArray;
   }
   if (checkedFeatures.length > 0) {
-    return sortedArray.filter((ad) => {
-      if (ad?.offer?.features) {
-        return checkedFeatures.every((feature) =>
-          ad.offer.features.includes(feature)
-        );
-      }
-      return false;
-    });
+    return sortedArray.filter((ad) =>
+      checkedFeatures.every((feature) => ad?.offer?.features?.includes(feature))
+    );
   }
   return sortedArray;
 };
-
 export default sortingFeatures;
