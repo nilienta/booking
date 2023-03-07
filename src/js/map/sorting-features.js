@@ -8,7 +8,9 @@ const sortingFeatures = (sortedArray) => {
   }
   if (checkedFeatures.length > 0) {
     return sortedArray.filter((ad) =>
-      checkedFeatures.every((feature) => ad?.offer?.features?.includes(feature))
+      checkedFeatures.every((feature) => {
+        ad?.offer?.features?.includes(feature);
+      })
     );
   }
   return sortedArray;
