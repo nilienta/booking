@@ -23,11 +23,11 @@ const sortingGuests = (sortedArray, nameFilter, selectValueFilter) => {
 };
 
 const sortingAnyFilter = (arr, nameFilter, selectValueFilter) =>
-  arr.filter((item) => item.offer[nameFilter] === selectValueFilter);
+  arr.filter((item) => item.offer[nameFilter] == selectValueFilter);
 
 const sortingAd = (adList) => {
   let sortedArray = [...adList];
-
+  console.log(sortedArray);
   const sortByAllFilters = () => {
     const selectsFiltersFromBody = Array.from(
       document.querySelectorAll('.map__filter')
@@ -58,6 +58,7 @@ const sortingAd = (adList) => {
               nameFilter,
               selectValueFilter
             );
+            console.log(typeof selectValueFilter);
             break;
         }
       }
