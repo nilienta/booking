@@ -1,52 +1,39 @@
+import {
+  addFeaturesInPopup,
+  addPhotosInPopup,
+  addAvatarInPopup,
+} from './fill-popup.js';
+
 const createPopupAd = (elem) => {
   const articlePopupFromTemplateCard = document
     .querySelector('#card')
     .content.querySelector('.popup');
   const articlePopupAd = articlePopupFromTemplateCard.cloneNode(true);
 
-  articlePopupAd.querySelector('.popup__title').textContent =
-    elem?.offer?.title;
-  articlePopupAd.querySelector('.popup__text--address').textContent =
-    elem?.offer?.address;
-  articlePopupAd.querySelector(
-    '.popup__text--price',
-  ).textContent = `${elem?.offer?.price} р/ночь`;
-  articlePopupAd.querySelector('.popup__type').textContent = elem?.offer?.type;
-  articlePopupAd.querySelector(
-    '.popup__text--capacity',
-  ).textContent = `${elem?.offer?.rooms} комн. для ${elem?.offer?.guests} чел.`;
-  articlePopupAd.querySelector(
-    '.popup__text--time',
-  ).textContent = `Заезд после ${elem?.offer?.checkin}, выезд до ${elem?.offer?.checkout}`;
+  const offer = elem?.offer;
+  if (offer) {
+    const fillTextContent = (querySelector, metricAd) => {
+      articlePopupAd.querySelector(querySelector).textContent = metricAd;
+    };
+    fillTextContent('.popup__title', offer.title);
+    fillTextContent('.popup__text--address', offer.address);
+    fillTextContent('.popup__text--price', `${offer.price} р/ночь`);
+    fillTextContent('.popup__type', offer.type);
+    fillTextContent(
+      '.popup__text--capacity',
+      `${offer.rooms} комн. для ${offer.guests} чел.`
+    );
+    fillTextContent(
+      '.popup__text--time',
+      `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`
+    );
+    fillTextContent('.popup__description', offer.description);
 
-  const createLiElFeature = (feature) => {
-    const liElFeature = document.createElement('li');
-    liElFeature.classList.add('popup__feature', `popup__feature--${feature}`);
-    return liElFeature;
-  };
-  const ulFeaturesFromPopupAd =
-    articlePopupAd.querySelector('.popup__features');
-  ulFeaturesFromPopupAd.innerHTML = '';
-  if (elem?.offer?.features) {
-    elem.offer.features.forEach((item) => {
-      ulFeaturesFromPopupAd.appendChild(createLiElFeature(item));
-    });
+    addPhotosInPopup(articlePopupAd, offer);
+    addFeaturesInPopup(articlePopupAd, offer);
   }
 
-  articlePopupAd.querySelector('.popup__description').textContent =
-    elem?.offer?.description;
-
-  const imgAdFromPopupAd = articlePopupAd.querySelector('.popup__photo');
-  articlePopupAd.querySelector('.popup__photos').textContent = '';
-  if (elem?.offer?.photos) {
-    elem.offer.photos.forEach((linkPhoto) => {
-      const imgAd = imgAdFromPopupAd.cloneNode(true);
-      imgAd.src = linkPhoto;
-      articlePopupAd.querySelector('.popup__photos').appendChild(imgAd);
-    });
-  }
-
-  articlePopupAd.querySelector('.popup__avatar').src = elem?.author?.avatar;
+  addAvatarInPopup(articlePopupAd, elem);
 
   return articlePopupAd;
 };
