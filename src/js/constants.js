@@ -4,6 +4,9 @@ export const BOOKING_URL_DATA =
 export const BOOKING_URL_SEND_AD =
   'https://23.javascript.pages.academy/keksobooking';
 
+export const URL_OPEN_STREET_MAP =
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
 export const POSSIBLE_FILE_TYPES_IMG = ['gif', 'jpg', 'jpeg', 'png'];
 
 export const STYLE_IMG_PARAMS = {
