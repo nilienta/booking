@@ -42,6 +42,7 @@ export const GUESTS_AMOUNT = { one: '1', two: '2', moreTwo: '0' };
 
 export const AVAILABLE_FILTERS = {
   any: 'any',
+  rooms: 'rooms',
   price: 'price',
   guests: 'guests',
 };
