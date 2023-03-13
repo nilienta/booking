@@ -1,8 +1,10 @@
 import { COORDINATES_CENTER_MAP, ICON_SIZE } from '../constants.js';
+import { icon, marker } from 'leaflet';
+import mainIcon from '../../img/main-pin.svg';
 
-const mainIconPin = L.icon({ ...ICON_SIZE, iconUrl: '../img/main-pin.svg' });
+const mainIconPin = icon({ ...ICON_SIZE, iconUrl: mainIcon });
 
-const mainMarkerPin = L.marker(
+const mainMarkerPin = marker(
   {
     lat: COORDINATES_CENTER_MAP.lat,
     lng: COORDINATES_CENTER_MAP.lng,

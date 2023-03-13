@@ -1,8 +1,10 @@
 import mainMarkerPin from './create-main-marker.js';
 import map from './create-map.js';
 import { ICON_SIZE } from '../constants.js';
+import { icon } from 'leaflet';
+import usualIcon from '../../img/pin.svg';
 
-const usualIconMarker = L.icon({ ...ICON_SIZE, iconUrl: '../img/pin.svg' });
+const usualIconMarker = icon({ ...ICON_SIZE, iconUrl: usualIcon });
 
 const getCoordinatesFromMap = (err) => {
   const inputAddressFromBody = document.querySelector('#address');

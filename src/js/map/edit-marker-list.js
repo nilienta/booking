@@ -1,5 +1,6 @@
 import { map, usualIconMarker } from './map.js';
 import createPopupAd from './supply-element.js';
+import { marker } from 'leaflet';
 
 const markersList = {
   currentMarkers: [],
@@ -10,7 +11,7 @@ const markersList = {
   },
   add(adList) {
     adList.forEach((ad) => {
-      const marker = L.marker(
+      const markerAd = marker(
         {
           lat: ad.location.lat,
           lng: ad.location.lng,
@@ -19,8 +20,8 @@ const markersList = {
           icon: usualIconMarker,
         }
       );
-      this.currentMarkers.push(marker);
-      marker.addTo(map).bindPopup(createPopupAd(ad), {
+      this.currentMarkers.push(markerAd);
+      markerAd.addTo(map).bindPopup(createPopupAd(ad), {
         keepInView: true,
       });
     });

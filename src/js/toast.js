@@ -1,3 +1,5 @@
+import Toastify from 'toastify-js';
+
 const showToast = (text) => {
   Toastify({
     text: [text],

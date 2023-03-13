@@ -6,6 +6,8 @@ import { onFormSubmit } from './form/submit-form.js';
 import { fetchRequest } from './api.js';
 import { BOOKING_URL_DATA } from './constants.js';
 
+import '../css/style.css';
+
 const inputFileAvatarFromBody = document.querySelector('#avatar');
 inputFileAvatarFromBody.addEventListener('change', (evt) => {
   loadAvatar(evt);

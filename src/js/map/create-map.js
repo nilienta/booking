@@ -3,8 +3,9 @@ import {
   INITIAL_ZOOM_MAP,
   URL_OPEN_STREET_MAP,
 } from '../constants.js';
+import { map, tileLayer } from 'leaflet';
 
-const map = L.map('map-canvas').setView(
+const mapCity = map('map-canvas').setView(
   {
     lat: COORDINATES_CENTER_MAP.lat,
     lng: COORDINATES_CENTER_MAP.lng,
@@ -12,6 +13,6 @@ const map = L.map('map-canvas').setView(
   INITIAL_ZOOM_MAP
 );
 
-L.tileLayer(URL_OPEN_STREET_MAP, {}).addTo(map);
+tileLayer(URL_OPEN_STREET_MAP, {}).addTo(mapCity);
 
-export default map;
+export default mapCity;
