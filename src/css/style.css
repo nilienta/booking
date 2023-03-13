@@ -67,6 +67,8 @@ fieldset {
 }
 
 .map {
+  width: 960px;
+  margin: 0 auto;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -586,7 +588,9 @@ fieldset {
   width: 70px;
   height: 70px;
 
-  background-color: #e4e4de;
+  background: url(../img/upload-grey.svg) #f0f0ea;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 5px;
 }
 
@@ -867,10 +871,11 @@ fieldset {
   top: -150px;
   left: 50%;
 
-  width: 109px;
-  height: 122px;
+  width: 150px;
+  height: 150px;
 
-  background-image: url("../img/muffin-white.svg");
+  background-image: url("../img/ok.svg");
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 
@@ -880,7 +885,7 @@ fieldset {
 }
 
 .error__message::before {
-  background-image: url("../img/muffin-red.svg");
+  background-image: url("../img/error.svg");
 }
 
 .error__button {
