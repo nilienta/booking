@@ -140,9 +140,13 @@ const onChangeHandlerNotice = (evt) => {
   }
 };
 
+const debounce = require('lodash/debounce');
+const DEBOUNCE_INTERVAL = 500;
+const debouncedHandle = debounce(onChangeHandlerNotice, DEBOUNCE_INTERVAL);
+
 const runValidateForm = () => {
   sortCapacityPerRoomsNumber();
-  sectionNoticeFromBody.addEventListener('input', onChangeHandlerNotice);
+  sectionNoticeFromBody.addEventListener('input', debouncedHandle);
 };
 
 export default runValidateForm;

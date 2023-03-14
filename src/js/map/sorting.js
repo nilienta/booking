@@ -53,11 +53,21 @@ const sortingAd = (adList) => {
       };
       selectValueFilter !== AVAILABLE_FILTERS.any && getSortedArray();
     });
-    //TODO добавить дебаунс
     markersList.update(sortingFeatures(sortedArray));
   };
 
   sortByAllFilters(adList);
 };
 
-export default sortingAd;
+const enableFilter = (adList) => {
+  const formFiltersFromBody = document.querySelector('.map__filters');
+  const getSortingAd = () => sortingAd(adList);
+
+  const debounce = require('lodash/debounce');
+  const DEBOUNCE_INTERVAL = 200;
+  const debouncedHandle = debounce(getSortingAd, DEBOUNCE_INTERVAL);
+
+  formFiltersFromBody.addEventListener('change', debouncedHandle);
+};
+
+export default enableFilter;
