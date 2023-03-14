@@ -1,4 +1,4 @@
-import { POSSIBLE_FILE_TYPES_IMG } from '../constants.js';
+import { POSSIBLE_FILE_TYPES_IMG, MAX_COUNT_PHOTO } from '../constants.js';
 import showToast from '../toast.js';
 
 const createFileReader = async (file) =>
@@ -14,21 +14,26 @@ const createFileReader = async (file) =>
   });
 
 const loadImg = async (inputFile) => {
-  const fileAvatar = inputFile.files[0];
-  const nameFileAvatar = fileAvatar?.name?.toLowerCase();
-  const isFormatFileCorrect = POSSIBLE_FILE_TYPES_IMG.some((item) =>
-    nameFileAvatar?.endsWith(item)
-  );
-  if (isFormatFileCorrect) {
-    try {
-      const base64URL = await createFileReader(fileAvatar);
-      return base64URL;
-    } catch (err) {
-      showToast(err.message);
+  const files = inputFile.files;
+  const urlsPhoto = [];
+  for (let i = 0; i < files.length && i < MAX_COUNT_PHOTO; i++) {
+    const filePhoto = files[i];
+    const nameFilePhoto = filePhoto?.name?.toLowerCase();
+    const isFormatFileCorrect = POSSIBLE_FILE_TYPES_IMG.some((item) =>
+      nameFilePhoto?.endsWith(item)
+    );
+    if (isFormatFileCorrect) {
+      try {
+        const base64URL = await createFileReader(files[i]);
+        urlsPhoto.push(base64URL);
+      } catch (err) {
+        showToast(err.message);
+      }
+    } else {
+      showToast('Расширение файла не корректно');
     }
-  } else {
-    showToast('Расширение файла не корректно');
   }
+  return urlsPhoto;
 };
 
 export default loadImg;

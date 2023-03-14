@@ -19,7 +19,12 @@ const createImgForPhoto = (photoSrc) => {
   divPhotoContainerFromBody.appendChild(divPreviewPhoto);
 };
 
-//TODO добавить множественную подгрузку фото <!-- multiple="multiple"  -->
+const getImgForPhoto = (arr) => {
+  arr.forEach((photoSrc) => {
+    createImgForPhoto(photoSrc);
+  });
+};
+
 const validateLoadPhoto = (evt) => {
   const inputFile = evt.target;
 
@@ -31,7 +36,7 @@ const validateLoadPhoto = (evt) => {
   ).length;
 
   if (countPhoto < COUNT_PREVIEW_PHOTO) {
-    loadImg(inputFile).then((photoSrc) => createImgForPhoto(photoSrc));
+    loadImg(inputFile).then((photoSrc) => getImgForPhoto(photoSrc));
   } else {
     inputFile.setCustomValidity(
       'Количество загружаемых фото не может превышать 6 штук'

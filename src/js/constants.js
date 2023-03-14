@@ -9,6 +9,8 @@ export const URL_OPEN_STREET_MAP =
 
 export const POSSIBLE_FILE_TYPES_IMG = ['gif', 'jpg', 'jpeg', 'png'];
 
+export const MAX_COUNT_PHOTO = 4;
+
 export const STYLE_IMG_PARAMS = {
   width: '70px',
   height: '70px',
