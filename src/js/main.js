@@ -1,3 +1,4 @@
+import '../css/style.css';
 import loadAvatar from './loadImg/load-avatar.js';
 import markersList from './map/edit-marker-list.js';
 import sortingAd from './map/sorting.js';
@@ -5,8 +6,6 @@ import runValidateForm from './form/validate-form.js';
 import { onFormSubmit } from './form/submit-form.js';
 import { fetchRequest } from './api.js';
 import { BOOKING_URL_DATA } from './constants.js';
-
-import '../css/style.css';
 
 const inputFileAvatarFromBody = document.querySelector('#avatar');
 inputFileAvatarFromBody.addEventListener('change', (evt) => {
