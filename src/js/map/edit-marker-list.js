@@ -5,8 +5,8 @@ import { marker } from 'leaflet';
 const markersList = {
   currentMarkers: [],
   del() {
-    this.currentMarkers.forEach((marker) => {
-      map.removeLayer(marker);
+    this.currentMarkers.forEach((markerAd) => {
+      map.removeLayer(markerAd);
     });
   },
   add(adList) {
