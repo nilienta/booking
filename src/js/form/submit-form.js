@@ -1,28 +1,10 @@
 import { createModalError, createModalSuccess } from '../create-modal-info.js';
 import { sendData } from '../api.js';
 import { BOOKING_URL_SEND_AD } from '../constants.js';
+import { resetForm } from './reset-form.js';
 
 const adForm = document.querySelector('.ad-form');
 
-const deleteDivPhoto = () => {
-  const InputPhotoFromBody = document.querySelector('#images');
-  InputPhotoFromBody.value = '';
-
-  const divPhotoFromBody = Array.from(
-    document.querySelectorAll('.ad-form__photo')
-  );
-  divPhotoFromBody.forEach((div) => {
-    div.remove();
-  });
-
-  const divEmptyFromBody = document.querySelector('.ad-form__photo--empty');
-  divEmptyFromBody.style.display = '';
-};
-
-const resetForm = () => {
-  deleteDivPhoto();
-  adForm.reset();
-};
 const onSuccess = () => {
   resetForm();
   createModalSuccess();
