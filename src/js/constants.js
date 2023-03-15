@@ -28,7 +28,7 @@ export const INITIAL_ZOOM_MAP = 13;
 
 export const ICON_SIZE = { iconSize: [52, 52], iconAnchor: [26, 52] };
 
-export const AVAILABLE_TYPE = {
+export const TYPE_FROM_EN_TO_RU = {
   bungalow: 'Бунгало',
   flat: 'Квартира',
   hotel: 'Отель',

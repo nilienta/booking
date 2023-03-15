@@ -9,12 +9,6 @@ import { BOOKING_URL_DATA } from './constants.js';
 import onPhotoChange from './loadImg/load-photo-of-housing';
 import onAvatarChange from './loadImg/load-avatar.js';
 
-onAvatarChange();
-onPhotoChange();
-runValidateForm();
-onFormSubmit();
-onFormReset();
-
 const addMarkerOnMap = async () => {
   const adList = await fetchRequest(BOOKING_URL_DATA);
   markersList.add(adList);
@@ -22,3 +16,9 @@ const addMarkerOnMap = async () => {
 };
 
 addMarkerOnMap();
+
+onAvatarChange();
+onPhotoChange();
+runValidateForm();
+onFormSubmit();
+onFormReset();

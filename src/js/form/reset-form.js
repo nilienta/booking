@@ -11,6 +11,7 @@ export const resetDivPhoto = () => {
   const divEmptyFromBody = document.querySelector('.ad-form__photo--empty');
   divEmptyFromBody.style.display = '';
 };
+
 const resetPhoto = () => {
   const InputPhotoFromBody = document.querySelector('#images');
   InputPhotoFromBody.value = '';

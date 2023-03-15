@@ -3,7 +3,7 @@ import {
   addPhotosInPopup,
   addAvatarInPopup,
 } from './fill-popup.js';
-import { AVAILABLE_TYPE } from '../constants.js';
+import { TYPE_FROM_EN_TO_RU } from '../constants.js';
 
 const createPopupAd = (elem) => {
   const offer = elem?.offer;
@@ -20,7 +20,7 @@ const createPopupAd = (elem) => {
   fillTextContent('.popup__title', offer.title);
   fillTextContent('.popup__text--address', offer.address);
   fillTextContent('.popup__text--price', `${offer.price} р/ночь`);
-  fillTextContent('.popup__type', AVAILABLE_TYPE[offer.type]);
+  fillTextContent('.popup__type', TYPE_FROM_EN_TO_RU[offer.type]);
   fillTextContent(
     '.popup__text--capacity',
     `${offer.rooms} комн. для ${offer.guests} чел.`
