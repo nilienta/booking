@@ -10,6 +10,7 @@ export const URL_OPEN_STREET_MAP =
 export const POSSIBLE_FILE_TYPES_IMG = ['gif', 'jpg', 'jpeg', 'png'];
 
 export const MAX_COUNT_PHOTO = 4;
+export const TEXT_MANY_PHOTOS = `Количество загружаемых фото не может превышать ${MAX_COUNT_PHOTO} шт.`;
 
 export const STYLE_IMG_PARAMS = {
   width: '70px',
@@ -17,8 +18,6 @@ export const STYLE_IMG_PARAMS = {
   borderRadius: '5px',
   objectFit: 'cover',
 };
-
-export const COUNT_PREVIEW_PHOTO = 6;
 
 export const COORDINATES_CENTER_MAP = {
   lat: 35.67,

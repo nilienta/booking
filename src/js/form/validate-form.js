@@ -1,4 +1,3 @@
-import validateLoadPhoto from '../loadImg/load-photo-of-housing.js';
 import {
   MIN_TITLE_LENGTH,
   MAX_TITLE_LENGTH,
@@ -15,7 +14,6 @@ const selectRoomsNumberFromBody = document.querySelector('#room_number');
 const selectCapacityFromBody = document.querySelector('#capacity');
 const inputAddressFromBody = document.querySelector('#address');
 const textareaDescriptionFromBody = document.querySelector('#description');
-const inputFileFromBodyImg = document.querySelector('#images');
 
 const validateLengthTextTitle = () => {
   const lengthTextTitle = inputTextTitleFromBody.value.length;
@@ -131,9 +129,6 @@ const onChangeHandlerNotice = (evt) => {
       break;
     case textareaDescriptionFromBody:
       validateLengthDescription();
-      break;
-    case inputFileFromBodyImg:
-      validateLoadPhoto(evt);
       break;
     default:
       break;

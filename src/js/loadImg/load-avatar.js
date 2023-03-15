@@ -15,4 +15,11 @@ const loadAvatar = (evt) => {
   loadImg(inputFile).then((avatarSrc) => changeAvatar(avatarSrc));
 };
 
-export default loadAvatar;
+const onAvatarChange = () => {
+  const inputFileAvatarFromBody = document.querySelector('#avatar');
+  inputFileAvatarFromBody.addEventListener('change', (evt) => {
+    loadAvatar(evt);
+  });
+};
+
+export default onAvatarChange;

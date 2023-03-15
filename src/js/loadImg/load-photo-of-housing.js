@@ -1,5 +1,10 @@
 import loadImg from './load-img.js';
-import { COUNT_PREVIEW_PHOTO, STYLE_IMG_PARAMS } from '../constants.js';
+import {
+  STYLE_IMG_PARAMS,
+  TEXT_MANY_PHOTOS,
+  MAX_COUNT_PHOTO,
+} from '../constants.js';
+import { resetDivPhoto } from '../form/reset-form.js';
 
 const createImgForPhoto = (photoSrc) => {
   const divEmptyFromBody = document.querySelector('.ad-form__photo--empty');
@@ -25,24 +30,25 @@ const getImgForPhoto = (arr) => {
   });
 };
 
-const validateLoadPhoto = (evt) => {
-  const inputFile = evt.target;
-
-  const divPhotoContainerFromBody = document.querySelector(
-    '.ad-form__photo-container'
-  );
-  const countPhoto = Array.from(
-    divPhotoContainerFromBody.querySelectorAll('img')
-  ).length;
-
-  if (countPhoto < COUNT_PREVIEW_PHOTO) {
-    loadImg(inputFile).then((photoSrc) => getImgForPhoto(photoSrc));
-  } else {
-    inputFile.setCustomValidity(
-      'Количество загружаемых фото не может превышать 6 штук'
-    );
-    inputFile.reportValidity();
-  }
+const checkCountPhoto = (inputFile) => {
+  const textValidity =
+    inputFile?.files?.length > MAX_COUNT_PHOTO ? TEXT_MANY_PHOTOS : '';
+  inputFile.setCustomValidity(textValidity);
+  inputFile.reportValidity();
 };
 
-export default validateLoadPhoto;
+const loadPhoto = (evt) => {
+  const inputFile = evt.target;
+  checkCountPhoto(inputFile);
+  loadImg(inputFile).then((photoSrc) => getImgForPhoto(photoSrc));
+};
+
+const onPhotoChange = () => {
+  const inputFileFromBody = document.querySelector('#images');
+  inputFileFromBody.addEventListener('change', (evt) => {
+    resetDivPhoto();
+    loadPhoto(evt);
+  });
+};
+
+export default onPhotoChange;
