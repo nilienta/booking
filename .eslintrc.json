@@ -4,10 +4,6 @@
 		"es2021": true,
 		"node": true
 	},
-	"globals": {
-		"L": "readonly",
-		"Toastify": "readonly"
-	},
 	"extends": [
 		"htmlacademy/vanilla",
 		"plugin:import/recommended",
