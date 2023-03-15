@@ -28,6 +28,14 @@ export const INITIAL_ZOOM_MAP = 13;
 
 export const ICON_SIZE = { iconSize: [52, 52], iconAnchor: [26, 52] };
 
+export const AVAILABLE_TYPE = {
+  bungalow: 'Бунгало',
+  flat: 'Квартира',
+  hotel: 'Отель',
+  house: 'Дом',
+  palace: 'Дворец',
+};
+
 export const PRICE_RANGE = {
   low: {
     MIN: 0,
