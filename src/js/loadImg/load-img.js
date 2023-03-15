@@ -16,15 +16,15 @@ const createFileReader = async (file) =>
 const loadImg = async (inputFile) => {
   const files = inputFile.files;
   const urlsPhoto = [];
-  for (let i = 0; i < files.length && i < MAX_COUNT_PHOTO; i++) {
-    const filePhoto = files[i];
+  for (let num = 0; num < files.length && num < MAX_COUNT_PHOTO; num++) {
+    const filePhoto = files[num];
     const nameFilePhoto = filePhoto?.name?.toLowerCase();
     const isFormatFileCorrect = POSSIBLE_FILE_TYPES_IMG.some((item) =>
       nameFilePhoto?.endsWith(item)
     );
     if (isFormatFileCorrect) {
       try {
-        const base64URL = await createFileReader(files[i]);
+        const base64URL = await createFileReader(files[num]);
         urlsPhoto.push(base64URL);
       } catch (err) {
         showToast(err.message);
