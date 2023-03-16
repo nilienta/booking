@@ -2,7 +2,6 @@
   "name": "booking",
   "homepage": "./",
   "description": "Личный проект",
-  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "{{sshUrl}}"
