@@ -5,7 +5,7 @@ import {
 } from './fill-popup.js';
 import { TYPE_FROM_EN_TO_RU } from '../constants.js';
 
-const createPopupAd = (elem) => {
+export const createPopupAd = (elem) => {
   const offer = elem?.offer;
   if (!offer) return;
 
@@ -37,5 +37,3 @@ const createPopupAd = (elem) => {
 
   return articlePopupAd;
 };
-
-export default createPopupAd;

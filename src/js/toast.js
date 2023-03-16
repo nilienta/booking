@@ -1,6 +1,6 @@
 import Toastify from 'toastify-js';
 
-const showToast = (text) => {
+export const showToast = (text) => {
   Toastify({
     text: [text],
     duration: 5000,
@@ -16,5 +16,3 @@ const showToast = (text) => {
     onClick: function () {},
   }).showToast();
 };
-
-export default showToast;

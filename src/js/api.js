@@ -1,4 +1,4 @@
-import showToast from './toast.js';
+import { showToast } from './toast.js';
 
 export const checkResponse = (res) =>
   res.ok ? res.json() : res.json().then((err) => Promise.reject(err));

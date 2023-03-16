@@ -1,4 +1,4 @@
-import loadImg from './load-img.js';
+import { loadImg } from './load-img.js';
 import {
   STYLE_IMG_PARAMS,
   TEXT_MANY_PHOTOS,
@@ -43,12 +43,10 @@ const loadPhoto = (evt) => {
   loadImg(inputFile).then((photoSrc) => getImgForPhoto(photoSrc));
 };
 
-const onPhotoChange = () => {
+export const onPhotoChange = () => {
   const inputFileFromBody = document.querySelector('#images');
   inputFileFromBody.addEventListener('change', (evt) => {
     resetDivPhoto();
     loadPhoto(evt);
   });
 };
-
-export default onPhotoChange;

@@ -1,5 +1,5 @@
 import { POSSIBLE_FILE_TYPES_IMG, MAX_COUNT_PHOTO } from '../constants.js';
-import showToast from '../toast.js';
+import { showToast } from '../toast.js';
 
 const createFileReader = async (file) =>
   new Promise((resolve, reject) => {
@@ -13,7 +13,7 @@ const createFileReader = async (file) =>
     };
   });
 
-const loadImg = async (inputFile) => {
+export const loadImg = async (inputFile) => {
   const files = inputFile.files;
   const urlsPhoto = [];
   for (let num = 0; num < files.length && num < MAX_COUNT_PHOTO; num++) {
@@ -35,5 +35,3 @@ const loadImg = async (inputFile) => {
   }
   return urlsPhoto;
 };
-
-export default loadImg;

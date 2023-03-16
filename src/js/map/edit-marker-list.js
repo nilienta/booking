@@ -1,12 +1,14 @@
-import { map, usualIconMarker } from './map.js';
-import createPopupAd from './supply-element.js';
 import { marker } from 'leaflet';
 
-const markersList = {
+import { mapCity } from './create-map.js';
+import { usualIconMarker } from './map.js';
+import { createPopupAd } from './supply-element.js';
+
+export const markersList = {
   currentMarkers: [],
   del() {
     this.currentMarkers.forEach((markerAd) => {
-      map.removeLayer(markerAd);
+      mapCity.removeLayer(markerAd);
     });
   },
   add(adList) {
@@ -21,7 +23,7 @@ const markersList = {
         }
       );
       this.currentMarkers.push(markerAd);
-      markerAd.addTo(map).bindPopup(createPopupAd(ad), {
+      markerAd.addTo(mapCity).bindPopup(createPopupAd(ad), {
         keepInView: true,
       });
     });
@@ -31,5 +33,3 @@ const markersList = {
     this.add(sortedArray);
   },
 };
-
-export default markersList;

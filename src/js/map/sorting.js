@@ -1,5 +1,5 @@
-import markersList from './edit-marker-list.js';
-import sortingFeatures from './sorting-features.js';
+import {markersList} from './edit-marker-list.js';
+import {sortingFeatures} from './sorting-features.js';
 import { PRICE_RANGE, GUESTS_AMOUNT, AVAILABLE_FILTERS } from '../constants.js';
 
 const sortingType = (sortedArray, selectValueFilter) =>
@@ -59,7 +59,7 @@ const sortingAd = (adList) => {
   sortByAllFilters(adList);
 };
 
-const enableFilter = (adList) => {
+export const enableFilter = (adList) => {
   const formFiltersFromBody = document.querySelector('.map__filters');
   const getSortingAd = () => sortingAd(adList);
 
@@ -70,4 +70,3 @@ const enableFilter = (adList) => {
   formFiltersFromBody.addEventListener('change', debouncedHandle);
 };
 
-export default enableFilter;

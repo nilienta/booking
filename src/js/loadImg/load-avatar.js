@@ -1,4 +1,4 @@
-import loadImg from './load-img.js';
+import { loadImg } from './load-img.js';
 import { STYLE_IMG_PARAMS } from '../constants.js';
 
 const loadAvatar = (evt) => {
@@ -15,11 +15,9 @@ const loadAvatar = (evt) => {
   loadImg(inputFile).then((avatarSrc) => changeAvatar(avatarSrc));
 };
 
-const onAvatarChange = () => {
+export const onAvatarChange = () => {
   const inputFileAvatarFromBody = document.querySelector('#avatar');
   inputFileAvatarFromBody.addEventListener('change', (evt) => {
     loadAvatar(evt);
   });
 };
-
-export default onAvatarChange;

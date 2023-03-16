@@ -1,10 +1,11 @@
-import mainMarkerPin from './create-main-marker.js';
-import map from './create-map.js';
-import { ICON_SIZE } from '../constants.js';
 import { icon } from 'leaflet';
+
+import { mainMarkerPin } from './create-main-marker.js';
+import { mapCity } from './create-map.js';
+import { ICON_SIZE } from '../constants.js';
 import usualIcon from '../../img/pin.svg';
 
-const usualIconMarker = icon({ ...ICON_SIZE, iconUrl: usualIcon });
+export const usualIconMarker = icon({ ...ICON_SIZE, iconUrl: usualIcon });
 
 const getCoordinatesFromMap = (err) => {
   const inputAddressFromBody = document.querySelector('#address');
@@ -14,9 +15,7 @@ const getCoordinatesFromMap = (err) => {
     .replace(/[a-zA-Z()]/g, '');
 };
 
-mainMarkerPin.addTo(map);
+mainMarkerPin.addTo(mapCity);
 mainMarkerPin.on('moveend', (err) => {
   getCoordinatesFromMap(err);
 });
-
-export { map, usualIconMarker };
